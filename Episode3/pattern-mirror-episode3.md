@@ -20,7 +20,7 @@ Let's get into it.
 
 ## 07 — Circuit Breaker ↔ Try-Catch / Retry with Backoff
 
-### The Infrastructure Pattern
+### The Platform Pattern
 
 If you've configured health probes on Azure Application Gateway, AWS Elastic Load Balancer, or any modern load balancer, you've used a circuit breaker — you just might not have called it that.
 

@@ -16,7 +16,7 @@ Let's get into it.
 
 ## Pattern 1: Reverse Proxy ↔ Mediator
 
-### The Infrastructure Pattern
+### The Platform Pattern
 
 If you've worked with Azure Application Gateway, HAProxy, Nginx, AWS CloudFront, or Azure Front Door, you've worked with a reverse proxy. The concept is simple: instead of clients talking directly to your backend services, every request flows through a single gateway that handles SSL termination, load balancing, request routing, and — critically — hides your internal service topology from the outside world.
 

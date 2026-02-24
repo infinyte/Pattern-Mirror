@@ -18,7 +18,7 @@ Let's get into it.
 
 ## Pattern 4: Orchestrator ↔ Coordinator / Pipeline
 
-### The Infrastructure Pattern
+### The Platform Pattern
 
 If you've built workflows in Azure Logic Apps, AWS Step Functions, Azure Durable Functions, or similar platforms, you've built an orchestrator. The concept: a central controller that manages a multi-step process, maintains state between steps, handles retries and timeouts, and makes decisions about which step executes next based on the outcome of the previous one.
 
