@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pattern Mirror — Episode 1: The Middlemen (Revised)</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0e17;
+    color: #d1d5db;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  .series-badge {
+    display: inline-block;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    color: #60a5fa;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: 1px solid #60a5fa33;
+    padding: 6px 16px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: #f9fafb;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .subtitle {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    color: #9ca3af;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+  hr {
+    border: none;
+    height: 1px;
+    background: #1f2937;
+    margin: 40px 0;
+  }
+  h2 {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #f3f4f6;
+    margin: 48px 0 20px;
+    line-height: 1.3;
+  }
+  h3 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #e5e7eb;
+    margin: 32px 0 12px;
+    letter-spacing: 0.3px;
+  }
+  p {
+    margin-bottom: 20px;
+    color: #d1d5db;
+  }
+  .lead {
+    font-size: 20px;
+    color: #e5e7eb;
+    line-height: 1.7;
+  }
+  strong { color: #f3f4f6; }
+  em { color: #e5e7eb; }
+  code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 15px;
+    background: #1f2937;
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: #60a5fa;
+  }
+  pre {
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    margin: 20px 0 28px;
+    line-height: 1.6;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 14px;
+    color: #e5e7eb;
+  }
+  .comment { color: #6b7280; }
+  .keyword { color: #c084fc; }
+  .type { color: #67e8f9; }
+  .string { color: #34d399; }
+  .pattern-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0 8px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #374151;
+  }
+  .pattern-number {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 48px;
+    font-weight: 900;
+    opacity: 0.15;
+    color: #60a5fa;
+    line-height: 1;
+  }
+  .pattern-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #f3f4f6;
+    line-height: 1.2;
+  }
+  .math-box {
+    background: #111827;
+    border-left: 3px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 24px 0 28px;
+  }
+  .math-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    color: #f59e0b;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .math-content {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 17px;
+    color: #e5e7eb;
+    line-height: 1.6;
+  }
+  .callout {
+    background: #1e3a5f22;
+    border: 1px solid #60a5fa33;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .callout p { color: #93c5fd; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout-title {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #60a5fa;
+    margin-bottom: 10px;
+  }
+  .neuro-box {
+    background: #1a0f2e;
+    border: 1px solid #7c3aed33;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .neuro-box p { color: #c4b5fd; }
+  .neuro-box p:last-child { margin-bottom: 0; }
+  .neuro-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    color: #a78bfa;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .analogy-box {
+    background: #1a2e1a;
+    border: 1px solid #22c55e33;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .analogy-box p { color: #86efac; }
+  .analogy-box p:last-child { margin-bottom: 0; }
+  .analogy-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    color: #4ade80;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .trace-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0 28px;
+    font-size: 15px;
+  }
+  .trace-table th {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 700;
+    color: #f3f4f6;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid #374151;
+    background: #1f2937;
+  }
+  .trace-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #1f2937;
+    color: #d1d5db;
+    vertical-align: top;
+  }
+  .trace-table tr:last-child td {
+    border-bottom: none;
+  }
+  .trace-table .pattern-name {
+    font-weight: 600;
+    color: #e5e7eb;
+    white-space: nowrap;
+  }
+  .next-episode {
+    background: #1f2937;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 48px 0 32px;
+    border: 1px solid #374151;
+  }
+  .next-episode h3 {
+    margin-top: 0;
+    color: #60a5fa;
+  }
+  .author-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 0;
+    border-top: 1px solid #1f2937;
+    margin-top: 40px;
+  }
+  .author-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #10b981);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .author-name {
+    font-family: 'Merriweather', Georgia, serif;
+    font-weight: 700;
+    color: #f3f4f6;
+    font-size: 17px;
+  }
+  .author-title {
+    color: #9ca3af;
+    font-size: 14px;
+    margin-top: 2px;
+  }
+  .preview-banner {
+    background: #1f2937;
+    border-bottom: 1px solid #374151;
+    padding: 12px 24px;
+    text-align: center;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    color: #6b7280;
+    letter-spacing: 1px;
+  }
+  .revision-tag {
+    display: inline-block;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: #4ade80;
+    background: #4ade8015;
+    border: 1px solid #4ade8033;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-banner">LINKEDIN NEWSLETTER PREVIEW — REVISED DRAFT <span class="revision-tag">V2</span></div>
+
+<div class="container">
+
+  <div class="series-badge">The Pattern Mirror • Episode 1 of 4</div>
+
+  <h1>The Middlemen</h1>
+  <div class="subtitle">Every enterprise infrastructure pattern has an application-level twin. Once you see it, you can't unsee it.</div>
+
+  <hr>
+
+  <p class="lead">If you've spent any time in enterprise software, you've probably noticed something odd: the same architectural problems keep showing up at every level of the stack. The infrastructure team builds a reverse proxy to manage traffic. The application team builds a mediator to manage component communication. Both teams think they're solving different problems. They're not.</p>
+
+  <p>This is the first installment of a four-part series called <strong>The Pattern Mirror</strong>, where we'll map infrastructure patterns to their application-level equivalents — and trace both back to the pure mathematics that makes them work. This isn't academic trivia. Understanding these connections is the difference between someone who <em>implements</em> patterns and someone who <em>understands architecture</em>.</p>
+
+  <p>In this episode, we're looking at the patterns I call <strong>The Middlemen</strong> — three infrastructure/application pairs where a single intermediary sits between producers and consumers, decoupling one side from the other.</p>
+
+  <p>Let's get into it.</p>
+
+  <hr>
+
+  <!-- PATTERN 1 -->
+  <div class="pattern-header">
+    <div class="pattern-number">01</div>
+    <div class="pattern-title">Reverse Proxy ↔ Mediator Pattern</div>
+  </div>
+
+  <h3>The Infrastructure Pattern</h3>
+
+  <p>If you've worked with Azure Application Gateway, HAProxy, Nginx, AWS CloudFront, or Azure Front Door, you've worked with a reverse proxy. The concept is simple: instead of clients talking directly to your backend services, every request flows through a single gateway that handles SSL termination, load balancing, request routing, and — critically — hides your internal service topology from the outside world.</p>
+
+  <p>The client sends a request to <code>api.yourcompany.com</code>. The reverse proxy receives it, decides which internal service should handle it, forwards the request, and returns the response. The client never knows whether there's one service or fifty behind that single endpoint. That's the point.</p>
+
+  <p>From an infrastructure standpoint, the reverse proxy solves several problems at once. It centralizes cross-cutting concerns like authentication, rate limiting, and TLS. It lets you change your internal architecture — add services, move services, scale services — without breaking any client contracts. And it provides a single point of observability for all inbound traffic.</p>
+
+  <h3>The Application Pattern</h3>
+
+  <p>Now zoom in to the application layer. Inside a .NET codebase using MediatR (or any mediator implementation), you see the exact same shape. Instead of components calling each other directly — <code>OrderService</code> calling <code>InventoryService</code> calling <code>NotificationService</code> — every interaction flows through a central mediator. A component sends a request to the mediator. The mediator resolves the correct handler. The handler processes the request and returns a response. The calling component never knows which handler executed its request or how many other components were involved.</p>
+
+  <pre><code><span class="comment">// Without mediator: tight coupling</span>
+<span class="keyword">public class</span> <span class="type">OrderController</span>
+{
+    <span class="keyword">private readonly</span> <span class="type">InventoryService</span> _inventory;
+    <span class="keyword">private readonly</span> <span class="type">PaymentService</span> _payment;
+    <span class="keyword">private readonly</span> <span class="type">NotificationService</span> _notifications;
+
+    <span class="keyword">public async</span> Task&lt;IActionResult&gt; <span class="type">PlaceOrder</span>(OrderRequest request)
+    {
+        <span class="keyword">await</span> _inventory.Reserve(request.Items);
+        <span class="keyword">await</span> _payment.Charge(request.PaymentInfo);
+        <span class="keyword">await</span> _notifications.SendConfirmation(request.Email);
+        <span class="keyword">return</span> Ok();
+    }
+}
+
+<span class="comment">// With mediator: the controller doesn't know who handles it</span>
+<span class="keyword">public class</span> <span class="type">OrderController</span>
+{
+    <span class="keyword">private readonly</span> <span class="type">IMediator</span> _mediator;
+
+    <span class="keyword">public async</span> Task&lt;IActionResult&gt; <span class="type">PlaceOrder</span>(OrderRequest request)
+    {
+        <span class="keyword">var</span> result = <span class="keyword">await</span> _mediator.Send(<span class="keyword">new</span> <span class="type">PlaceOrderCommand</span>(request));
+        <span class="keyword">return</span> Ok(result);
+    }
+}</code></pre>
+
+  <p>The mediator decouples components inside the application the same way the reverse proxy decouples services outside of it. Both centralize routing logic. Both hide internal topology. Both let you restructure what's behind them without breaking the callers in front of them.</p>
+
+  <div class="neuro-box">
+    <div class="neuro-label">🧠 The Neuroscience Detour</div>
+    <p>If you've read Robert Sapolsky's <em>Behave</em>, you might recognize a parallel here. For decades, neuroscientists were drawn to the idea of the <strong>grandmother neuron</strong> — the elegant hypothesis that a single neuron could hold the key to a single cognitive concept. One neuron fires when you see your grandmother's face. Clean, simple, intuitive. It <em>felt</em> like how the brain should work.</p>
+    <p>It was largely disproven. The brain doesn't work that way. Representations are distributed across neural populations, not pinned to a single cell.</p>
+    <p>The mediator pattern <em>looks</em> like a grandmother neuron — a single node at the center of everything. But just like the hypothesis failed because the central node doesn't actually <em>hold</em> knowledge, the mediator doesn't either. It routes it. A more accurate neuroscience analogy is the <strong>thalamus</strong> — the brain's relay station. Almost all sensory input passes through the thalamus on its way to the correct region of the cortex. It doesn't understand the signal. It doesn't process the content. It just knows where it needs to go. That's your reverse proxy. That's your mediator.</p>
+  </div>
+
+  <div class="math-box">
+    <div class="math-label">Pure Math Foundation</div>
+    <div class="math-content">Both patterns converge on <strong>betweenness centrality</strong> from graph theory — a single node positioned to sit on the most shortest paths between all other nodes. Without the intermediary, you have an O(n²) communication problem. With it, you reduce to O(n). Same mathematics whether the "nodes" are cloud services or in-process components.</div>
+  </div>
+
+  <hr>
+
+  <!-- PATTERN 2 -->
+  <div class="pattern-header">
+    <div class="pattern-number">02</div>
+    <div class="pattern-title">API Gateway / Load Balancer ↔ Broker Pattern</div>
+  </div>
+
+  <h3>The Infrastructure Pattern</h3>
+
+  <p>An API Gateway does more than just forward requests. Azure API Management, AWS Application Load Balancer, Kong, and similar tools <em>inspect</em> the content of incoming requests and route them to different backend services based on rules — URL path, HTTP headers, query parameters, even request body content.</p>
+
+  <p>A request to <code>/api/reservations</code> goes to the reservations microservice. A request to <code>/api/fuel</code> goes to the fuel service. A request to <code>/api/inventory</code> goes to the inventory service. The gateway examines the request, applies routing rules, and dispatches to the correct destination.</p>
+
+  <p>This is fundamentally different from the reverse proxy. The reverse proxy is a <strong>pass-through</strong> — it forwards everything to one destination (or round-robins across replicas of the same service). The API gateway is a <strong>dispatcher</strong> — it makes a routing <em>decision</em> based on the content of each request.</p>
+
+  <h3>The Application Pattern</h3>
+
+  <p>Inside your codebase, this is the <strong>Broker pattern</strong> — sometimes called a message router, and closely related to the Strategy pattern. A broker receives a message, inspects its properties, and dispatches it to the correct handler based on configured rules.</p>
+
+  <pre><code><span class="comment">// Content-based routing at the application level</span>
+<span class="keyword">public class</span> <span class="type">MessageBroker</span>
+{
+    <span class="keyword">private readonly</span> Dictionary&lt;<span class="keyword">string</span>, <span class="type">IMessageHandler</span>&gt; _routes;
+
+    <span class="keyword">public async</span> Task&lt;Result&gt; <span class="type">Route</span>(Message message)
+    {
+        <span class="comment">// Inspect message properties → resolve handler</span>
+        <span class="keyword">if</span> (_routes.TryGetValue(message.Type, <span class="keyword">out var</span> handler))
+        {
+            <span class="keyword">return await</span> handler.Handle(message);
+        }
+        <span class="keyword">throw new</span> <span class="type">UnroutableMessageException</span>(message.Type);
+    }
+}</code></pre>
+
+  <p>The API Gateway inspects HTTP requests and routes to services. The Broker inspects application messages and routes to handlers. Both make a dispatching decision based on content inspection. The core behavior — examine input, apply rules, dispatch to correct destination — is identical.</p>
+
+  <h3>Why This Isn't the Same as Pattern 1</h3>
+
+  <p>Here's where engineers often blur the line. The reverse proxy and the API gateway look similar at the infrastructure level, and the mediator and broker look similar at the application level. The distinction matters:</p>
+
+  <p>The <strong>Reverse Proxy / Mediator</strong> is topology-hiding. Its primary job is to decouple the caller from the callee. Routing, if any, is secondary. The <strong>API Gateway / Broker</strong> is content-routing. Its primary job is to make a dispatching decision based on the properties of the request. Decoupling is a side effect, not the goal.</p>
+
+  <div class="analogy-box">
+    <div class="analogy-label">🍞 The Sandwich Analogy</div>
+    <p><strong>The Reverse Proxy is Mom.</strong> The kids want a sandwich. They ask Mom. Mom goes to the fridge, makes the sandwich, and brings it back. The kids never see the fridge, never know what's in it, and never have to think about where the sandwich came from. Mom hides the internal topology and handles the entire round trip. The kids only ever interact with her.</p>
+    <p><strong>The API Gateway is Dad.</strong> Same house, different parent. The kids ask Dad for a sandwich. Dad says, "Go to the fridge and grab one." He told them <em>where</em> to go based on what they asked for — that's a routing decision. But the kids go to the fridge themselves and come back with the sandwich. Dad inspects the request and dispatches to the right destination, but he's not hiding anything. He's directing traffic.</p>
+    <p>One hides the source. The other points you to it.</p>
+  </div>
+
+  <div class="math-box">
+    <div class="math-label">Pure Math Foundation</div>
+    <div class="math-content">Both implement <strong>weighted distribution functions</strong>. At the simplest level, round-robin load balancing is modular arithmetic: request <em>i</em> goes to server <em>i</em> mod <em>n</em>. At the complex level, content-based routing is a mapping function <em>f(request) → destination</em>. Weighted load balancing adds discrete probability distributions to the request stream. Same math, infrastructure or application.</div>
+  </div>
+
+  <hr>
+
+  <!-- PATTERN 3 -->
+  <div class="pattern-header">
+    <div class="pattern-number">03</div>
+    <div class="pattern-title">Service Bus / Event Grid ↔ Observer / Pub-Sub</div>
+  </div>
+
+  <h3>The Infrastructure Pattern</h3>
+
+  <p>Apache Kafka, RabbitMQ, Azure Service Bus, Azure Event Grid, AWS SNS/SQS — these are the backbones of event-driven architecture at the infrastructure level. The pattern is straightforward: a publisher emits an event to a topic or queue. Zero or more subscribers have registered interest in that topic. The messaging infrastructure delivers the event to all registered subscribers. The publisher doesn't know who (or how many) subscribers exist. The subscribers don't know (or care) who published the event.</p>
+
+  <p>This decoupling is what makes event-driven systems scale. The order service publishes an <code>OrderPlaced</code> event. The inventory service, the notification service, the analytics service, and the billing service all subscribe independently. If you add a new compliance service next quarter, you just add another subscriber. The order service doesn't change. No coordination needed.</p>
+
+  <h3>The Application Pattern</h3>
+
+  <p>Inside a single application, this is the <strong>Observer pattern</strong> (GoF) or the <strong>Pub-Sub pattern</strong> — <code>EventHandler&lt;T&gt;</code> in C#, <code>IObservable&lt;T&gt;</code> / <code>IObserver&lt;T&gt;</code> in Reactive Extensions, or even the basic <code>event</code> keyword in C#.</p>
+
+  <pre><code><span class="comment">// C# events: the simplest pub-sub</span>
+<span class="keyword">public class</span> <span class="type">OrderService</span>
+{
+    <span class="keyword">public event</span> EventHandler&lt;<span class="type">OrderPlacedEvent</span>&gt; OrderPlaced;
+
+    <span class="keyword">public void</span> <span class="type">PlaceOrder</span>(Order order)
+    {
+        <span class="comment">// ... process order ...</span>
+        OrderPlaced?.Invoke(<span class="keyword">this</span>, <span class="keyword">new</span> <span class="type">OrderPlacedEvent</span>(order));
+        <span class="comment">// OrderService has no idea who's subscribed</span>
+    }
+}
+
+<span class="comment">// Subscribers register independently</span>
+orderService.OrderPlaced += inventoryHandler.OnOrderPlaced;
+orderService.OrderPlaced += analyticsHandler.OnOrderPlaced;
+orderService.OrderPlaced += notificationHandler.OnOrderPlaced;</code></pre>
+
+  <p>The shape is identical: a publisher emits, a bus distributes, subscribers consume. At the infrastructure level, the bus is Kafka or Service Bus and the subscribers are separate microservices. At the application level, the bus is the event invocation list and the subscribers are handler methods. The decoupling principle is the same.</p>
+
+  <div class="analogy-box">
+    <div class="analogy-label">🍸 The Bartender, the Barback, and the Customer</div>
+    <p>You're sitting at a bar. You don't talk to the bartender directly. The barback (or waitress) comes to you and asks what you'd like. You say, "Long Island iced tea." She walks to the bar, tells the bartender, and he makes the drink. She brings it back to you.</p>
+    <p>The bartender is the <strong>publisher</strong>. He produces the drinks. He doesn't know who ordered them, where they're going, or how many people at how many tables are waiting. He just makes what's requested and puts it on the bar. The barback is the <strong>message bus</strong> — the intermediary who knows both the source (bartender) and the destination (you). She's the subscription and delivery mechanism.</p>
+    <p>Here's the critical insight: <strong>pub-sub is not reflexive.</strong> You can walk up to the bartender and ask, "How many Long Island iced teas did you make tonight?" He can tell you. But ask him "Who drank them?" — he has no idea. Only the barback knows the full delivery mapping. The publisher knows what was produced but not who consumed it.</p>
+  </div>
+
+  <h3>The Critical Difference: Durability</h3>
+
+  <p>Infrastructure-level messaging systems (Kafka, Service Bus, RabbitMQ) provide <strong>durability</strong> — messages are persisted, retried on failure, and can survive subscriber downtime. Application-level events are typically <strong>fire-and-forget</strong> — if the subscriber throws an exception or the process crashes, the event is lost.</p>
+
+  <p>This is why many teams start with in-process events and eventually migrate to an infrastructure message bus as reliability requirements grow. The pattern is the same; the guarantees change.</p>
+
+  <div class="math-box">
+    <div class="math-label">Pure Math Foundation</div>
+    <div class="math-content">Both implement <strong>set-theoretic relations</strong>. A publisher defines a topic (a set of events). Subscribers register interest (forming a subset). The delivery function maps one event to all elements in the subscriber set: <em>D(e) = {s₁, s₂, ..., sₙ}</em> where each <em>sᵢ ∈ S</em>. This is why "fan-out" is the common term — one input fans out to <em>n</em> outputs, where <em>n</em> is the cardinality of the subscriber set.</div>
+  </div>
+
+  <hr>
+
+  <!-- BIGGER PICTURE -->
+  <h2>The Bigger Picture</h2>
+
+  <p><strong>Architecture is fractal.</strong> The same structural solutions appear at every level of the stack because the same structural <em>problems</em> appear at every level of the stack. Decoupling producers from consumers is a universal problem. Routing messages to the right destination is a universal problem. Broadcasting events to interested parties is a universal problem. The solutions share the same mathematical bones whether they're implemented in cloud infrastructure or application code.</p>
+
+  <h3>Traceability: The Hidden Differentiator</h3>
+
+  <p>All three Middleman patterns put an intermediary between producers and consumers. But they differ in a way that has real operational consequences: <strong>traceability direction</strong>.</p>
+
+  <table class="trace-table">
+    <thead>
+      <tr>
+        <th>Pattern</th>
+        <th>Who Knows What</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pattern-name">Reverse Proxy / Mediator</td>
+        <td>Full bidirectional traceability. The intermediary (and the caller) can trace who asked and who answered.</td>
+      </tr>
+      <tr>
+        <td class="pattern-name">API Gateway / Broker</td>
+        <td>Full bidirectional traceability. The routing decision is logged and the full chain is visible.</td>
+      </tr>
+      <tr>
+        <td class="pattern-name">Pub-Sub / Observer</td>
+        <td>Unidirectional only. The publisher knows what it published. The subscriber knows what it received. Neither can see the other without querying the bus.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>This isn't just a theoretical distinction. It determines how you debug production issues, how you build audit trails, and how you reason about data flow in compliance-heavy environments. If you need to answer the question "who consumed this event?" — and you're using pub-sub — you'd better have centralized logging on your message bus, because the publisher can't tell you.</p>
+
+  <h3>Why This Matters for Your Career</h3>
+
+  <p>If you understand the Mediator pattern deeply — not just how to use MediatR, but <em>why</em> a central intermediary reduces coupling — then when someone puts you in front of an Azure Application Gateway for the first time, you already understand it. The API is new. The concept isn't. This is the compound interest of architectural thinking.</p>
+
+  <!-- NEXT EPISODE -->
+  <div class="next-episode">
+    <h3>Coming Up: Episode 2 — "The Workflows"</h3>
+    <p>We'll look at what happens when patterns need to manage multi-step processes, handle failure, and transform systems over time: <strong>Orchestrator ↔ Coordinator</strong>, <strong>Infrastructure as Code ↔ Saga</strong>, and <strong>Strangler Fig ↔ Adapter/Facade</strong>. These are the patterns that separate senior engineers from staff engineers.</p>
+  </div>
+
+  <p><em>The Pattern Mirror is a four-part series mapping enterprise infrastructure patterns to their application-level equivalents. Follow along for the complete series, or share this with someone who's making the jump from application development to systems architecture.</em></p>
+
+  <div class="author-box">
+    <div class="author-avatar">KM</div>
+    <div>
+      <div class="author-name">Kurt Mitchell</div>
+      <div class="author-title">Enterprise Architect & Senior Software Engineer | Designing distributed systems across DoD, aviation, and cloud platforms for 20 years.</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

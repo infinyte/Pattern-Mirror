@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pattern Mirror — Episode 2: The Workflows (V2)</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0e17; color: #d1d5db; font-family: 'Source Sans 3', sans-serif; font-size: 18px; line-height: 1.75; }
+  .container { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+  .series-badge { display: inline-block; font-family: 'Source Code Pro', monospace; font-size: 12px; color: #60a5fa; letter-spacing: 3px; text-transform: uppercase; border: 1px solid #60a5fa33; padding: 6px 16px; border-radius: 4px; margin-bottom: 24px; }
+  h1 { font-family: 'Merriweather', Georgia, serif; font-size: 42px; font-weight: 900; color: #f9fafb; line-height: 1.2; margin-bottom: 12px; }
+  .subtitle { font-family: 'Merriweather', Georgia, serif; font-size: 20px; font-weight: 400; font-style: italic; color: #9ca3af; margin-bottom: 40px; line-height: 1.5; }
+  hr { border: none; height: 1px; background: #1f2937; margin: 40px 0; }
+  h2 { font-family: 'Merriweather', Georgia, serif; font-size: 28px; font-weight: 700; color: #f3f4f6; margin: 48px 0 20px; line-height: 1.3; }
+  h3 { font-family: 'Source Sans 3', sans-serif; font-size: 20px; font-weight: 700; color: #e5e7eb; margin: 32px 0 12px; letter-spacing: 0.3px; }
+  p { margin-bottom: 20px; color: #d1d5db; }
+  .lead { font-size: 20px; color: #e5e7eb; line-height: 1.7; }
+  strong { color: #f3f4f6; }
+  em { color: #e5e7eb; }
+  code { font-family: 'Source Code Pro', monospace; font-size: 15px; background: #1f2937; padding: 2px 7px; border-radius: 4px; color: #60a5fa; }
+  pre { background: #1f2937; border: 1px solid #374151; border-radius: 8px; padding: 20px 24px; overflow-x: auto; margin: 20px 0 28px; line-height: 1.6; }
+  pre code { background: none; padding: 0; font-size: 14px; color: #e5e7eb; }
+  .comment { color: #6b7280; }
+  .keyword { color: #c084fc; }
+  .type { color: #67e8f9; }
+  .string { color: #34d399; }
+  .annotation { color: #fbbf24; }
+  .pattern-header { display: flex; align-items: center; gap: 16px; margin: 48px 0 8px; padding-bottom: 12px; border-bottom: 2px solid #374151; }
+  .pattern-number { font-family: 'Merriweather', Georgia, serif; font-size: 48px; font-weight: 900; opacity: 0.15; color: #60a5fa; line-height: 1; }
+  .pattern-title { font-family: 'Merriweather', Georgia, serif; font-size: 26px; font-weight: 700; color: #f3f4f6; line-height: 1.2; }
+  .math-box { background: #111827; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0 28px; }
+  .math-label { font-family: 'Source Code Pro', monospace; font-size: 11px; color: #f59e0b; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .math-content { font-family: 'Source Sans 3', sans-serif; font-size: 17px; color: #e5e7eb; line-height: 1.6; }
+  .diagram-box { background: #1f2937; border: 1px solid #374151; border-radius: 8px; padding: 24px; margin: 24px 0 28px; font-family: 'Source Code Pro', monospace; font-size: 14px; line-height: 1.8; color: #e5e7eb; white-space: pre; overflow-x: auto; }
+  .insight-box { background: #1a2e1a; border: 1px solid #22c55e33; border-radius: 8px; padding: 24px 28px; margin: 28px 0; }
+  .insight-box p { color: #86efac; }
+  .insight-box p:last-child { margin-bottom: 0; }
+  .insight-label { font-family: 'Source Code Pro', monospace; font-size: 11px; color: #4ade80; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .warning-box { background: #2e1a1a; border: 1px solid #ef444433; border-radius: 8px; padding: 24px 28px; margin: 28px 0; }
+  .warning-box p { color: #fca5a5; }
+  .warning-box p:last-child { margin-bottom: 0; }
+  .warning-label { font-family: 'Source Code Pro', monospace; font-size: 11px; color: #f87171; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .rules-box { background: #1a1a2e; border: 1px solid #818cf833; border-radius: 8px; padding: 24px 28px; margin: 28px 0; }
+  .rules-box p { color: #c7d2fe; }
+  .rules-box p:last-child { margin-bottom: 0; }
+  .rules-label { font-family: 'Source Code Pro', monospace; font-size: 11px; color: #a5b4fc; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .memo-box { background: #1a2e2e; border: 1px solid #2dd4bf33; border-radius: 8px; padding: 24px 28px; margin: 28px 0; }
+  .memo-box p { color: #99f6e4; }
+  .memo-box p:last-child { margin-bottom: 0; }
+  .memo-label { font-family: 'Source Code Pro', monospace; font-size: 11px; color: #2dd4bf; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .convention-box { background: #2e2a1a; border: 1px solid #fbbf2433; border-radius: 8px; padding: 24px 28px; margin: 28px 0; }
+  .convention-box p { color: #fde68a; }
+  .convention-box p:last-child { margin-bottom: 0; }
+  .convention-label { font-family: 'Source Code Pro', monospace; font-size: 11px; color: #fbbf24; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .refuel-box { background: #1a2e1a; border: 1px solid #22c55e33; border-radius: 8px; padding: 24px 28px; margin: 28px 0; }
+  .refuel-box p { color: #86efac; }
+  .refuel-box p:last-child { margin-bottom: 0; }
+  .refuel-label { font-family: 'Source Code Pro', monospace; font-size: 11px; color: #4ade80; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .registry-box { background: #1e3a5f22; border: 1px solid #60a5fa33; border-radius: 8px; padding: 24px 28px; margin: 28px 0; }
+  .registry-box p { color: #93c5fd; }
+  .registry-box p:last-child { margin-bottom: 0; }
+  .registry-label { font-family: 'Source Code Pro', monospace; font-size: 11px; color: #60a5fa; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .trace-table { width: 100%; border-collapse: collapse; margin: 24px 0 28px; font-size: 15px; }
+  .trace-table th { font-family: 'Source Sans 3', sans-serif; font-weight: 700; color: #f3f4f6; text-align: left; padding: 12px 16px; border-bottom: 2px solid #374151; background: #1f2937; }
+  .trace-table td { padding: 12px 16px; border-bottom: 1px solid #1f2937; color: #d1d5db; vertical-align: top; }
+  .trace-table tr:last-child td { border-bottom: none; }
+  .trace-table .pattern-name { font-weight: 600; color: #e5e7eb; white-space: nowrap; }
+  .next-episode { background: #1f2937; border-radius: 12px; padding: 28px 32px; margin: 48px 0 32px; border: 1px solid #374151; }
+  .next-episode h3 { margin-top: 0; color: #60a5fa; }
+  .author-box { display: flex; align-items: center; gap: 16px; padding: 24px 0; border-top: 1px solid #1f2937; margin-top: 40px; }
+  .author-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #10b981); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .author-name { font-family: 'Merriweather', Georgia, serif; font-weight: 700; color: #f3f4f6; font-size: 17px; }
+  .author-title { color: #9ca3af; font-size: 14px; margin-top: 2px; }
+  .preview-banner { background: #1f2937; border-bottom: 1px solid #374151; padding: 12px 24px; text-align: center; font-family: 'Source Code Pro', monospace; font-size: 12px; color: #6b7280; letter-spacing: 1px; }
+  .revision-tag { display: inline-block; font-family: 'Source Code Pro', monospace; font-size: 10px; color: #4ade80; background: #4ade8015; border: 1px solid #4ade8033; padding: 2px 8px; border-radius: 3px; margin-left: 8px; letter-spacing: 1px; vertical-align: middle; }
+  .ep-link { color: #60a5fa; text-decoration: none; border-bottom: 1px solid #60a5fa44; }
+  .ep-link:hover { border-bottom-color: #60a5fa; }
+</style>
+</head>
+<body>
+
+<div class="preview-banner">LINKEDIN NEWSLETTER PREVIEW — EPISODE 2 <span class="revision-tag">V2</span></div>
+
+<div class="container">
+
+  <div class="series-badge">The Pattern Mirror • Episode 2 of 4</div>
+
+  <h1>The Workflows</h1>
+  <div class="subtitle">The Middlemen route traffic. The Workflows manage consequences.</div>
+
+  <hr>
+
+  <p class="lead">In <a class="ep-link" href="#">Episode 1</a>, we looked at three Middleman patterns — intermediaries that sit between producers and consumers, decoupling one side from the other. Those patterns solve communication problems. They answer the question: <em>how does A talk to B without knowing about B?</em></p>
+
+  <p>This episode is different. The Workflow patterns solve <strong>process problems</strong>. They answer harder questions: <em>What happens when step 3 of 7 fails? How do you undo something that's already been committed across three different systems? How do you refuel a plane while it's still in flight?</em></p>
+
+  <p>That last one isn't hypothetical. The Air Force does it every day — a KC-135 Stratotanker connects a fuel boom to a receiving aircraft at 500 mph without either plane stopping. The old fuel runs low, the new fuel flows in, and the connection is severed only when the transfer is complete. That's the Strangler Fig pattern, and we'll get to it.</p>
+
+  <p>These are the patterns that keep you up at night. They're also the patterns that separate senior engineers from architects — because the failure modes are where the real design decisions live.</p>
+
+  <p>Let's get into it.</p>
+
+  <hr>
+
+  <!-- PATTERN 4 -->
+  <div class="pattern-header">
+    <div class="pattern-number">04</div>
+    <div class="pattern-title">Orchestrator ↔ Coordinator / Pipeline</div>
+  </div>
+
+  <h3>The Infrastructure Pattern</h3>
+
+  <p>If you've built workflows in Azure Logic Apps, AWS Step Functions, Azure Durable Functions, or similar platforms, you've built an orchestrator. The concept: a central controller that manages a multi-step process, maintains state between steps, handles retries and timeouts, and makes decisions about which step executes next based on the outcome of the previous one.</p>
+
+  <p>A real-world scenario: a new customer onboarding flow. Step 1: validate the customer's identity against a third-party API. Step 2: provision their account in the primary database. Step 3: configure their role-based permissions. Step 4: send a welcome notification. Step 5: trigger a billing setup event.</p>
+
+  <p>Each step depends on the previous one. If identity validation fails, you don't provision the account. If account provisioning fails, you don't configure permissions. The orchestrator tracks where you are in this sequence, what's succeeded, what's failed, and what needs to be retried. It's a state machine with a job to do.</p>
+
+  <div class="diagram-box">[Start] → Validate Identity → Provision Account → Configure RBAC → Send Welcome → Trigger Billing → [Complete]
+               ↓ fail                ↓ fail                ↓ fail
+            [Retry x3]          [Compensate]          [Log + Alert]</div>
+
+  <p>The key distinction is that the orchestrator is <strong>centrally controlled</strong>. It knows the entire workflow. It decides what happens next. The individual services being called don't know they're part of a larger process — they just receive a request and return a response. The intelligence lives in the orchestrator, not in the participants.</p>
+
+  <h3>The Application Pattern</h3>
+
+  <p>Inside your codebase, this is the <strong>Coordinator</strong> or <strong>Pipeline pattern</strong>. A central class manages the execution of a sequence of operations, tracking state and handling failures at each step.</p>
+
+  <pre><code><span class="comment">// A simple pipeline coordinator</span>
+<span class="keyword">public class</span> <span class="type">OnboardingPipeline</span>
+{
+    <span class="keyword">private readonly</span> <span class="type">IIdentityService</span> _identity;
+    <span class="keyword">private readonly</span> <span class="type">IAccountService</span> _accounts;
+    <span class="keyword">private readonly</span> <span class="type">IPermissionService</span> _permissions;
+    <span class="keyword">private readonly</span> <span class="type">INotificationService</span> _notifications;
+
+    <span class="keyword">public async</span> Task&lt;<span class="type">OnboardingResult</span>&gt; Execute(<span class="type">OnboardingRequest</span> request)
+    {
+        <span class="keyword">var</span> state = <span class="keyword">new</span> <span class="type">PipelineState</span> { CurrentStep = <span class="string">"identity"</span> };
+
+        <span class="keyword">try</span>
+        {
+            <span class="keyword">var</span> identity = <span class="keyword">await</span> _identity.Validate(request.Customer);
+            state.CurrentStep = <span class="string">"provision"</span>;
+
+            <span class="keyword">var</span> account = <span class="keyword">await</span> _accounts.Provision(identity);
+            state.CurrentStep = <span class="string">"permissions"</span>;
+
+            <span class="keyword">await</span> _permissions.ConfigureRoles(account, request.RoleTemplate);
+            state.CurrentStep = <span class="string">"notification"</span>;
+
+            <span class="keyword">await</span> _notifications.SendWelcome(account);
+            state.CurrentStep = <span class="string">"complete"</span>;
+
+            <span class="keyword">return</span> <span class="type">OnboardingResult</span>.Success(account);
+        }
+        <span class="keyword">catch</span> (Exception ex)
+        {
+            state.FailedAt = state.CurrentStep;
+            state.Error = ex.Message;
+            <span class="keyword">return</span> <span class="type">OnboardingResult</span>.Failed(state);
+        }
+    }
+}</code></pre>
+
+  <p>The infrastructure orchestrator manages steps across distributed services. The application coordinator manages steps within a single process. Both maintain state, both control sequencing, and both centralize the "what happens next" decision. The participants don't know they're part of a pipeline — they just do their one job when asked.</p>
+
+  <div class="rules-box">
+    <div class="rules-label">📋 When the Logic Outgrows the Code: Rules Engines</div>
+    <p>There's a variant of the orchestrator worth calling out: the <strong>declarative orchestrator</strong>, where workflow logic is externalized into rules rather than hardcoded in a pipeline class.</p>
+    <p>Rules engines like Drools (Java), NRules (.NET), or the rules capabilities within Azure Logic Apps and AWS Step Functions let you define "if this condition, then this action" as data rather than code. The coordinator still manages execution, but the <em>decision logic</em> lives in a rules file, a database, or a configuration store rather than in compiled code.</p>
+    <p>This matters when the workflow logic changes frequently (business rules that shift quarterly), when non-developers need to modify behavior (business analysts maintaining scoring rules), or when the decision tree is too complex for readable imperative code. The coordination infrastructure stays the same. Only the rules change.</p>
+  </div>
+
+  <div class="memo-box">
+    <div class="memo-label">🔄 Step Memoization: Where Workflows Meet Caching</div>
+    <p>Production-grade orchestrators don't re-execute steps that have already succeeded. If step 3 of 5 fails and the orchestrator retries, it doesn't re-run steps 1 and 2 — it uses their cached results and picks up from step 3.</p>
+    <p>Azure Durable Functions does this natively through its replay mechanism: the orchestrator function re-executes from the top, but every completed step returns its cached output instead of actually calling the service again. This is <strong>step memoization</strong> — the same concept as application-level caching (which we'll explore in depth in Episode 3), applied to workflow state. It's what makes orchestrators idempotent and safe to retry.</p>
+  </div>
+
+  <h3>Why Centralized Control Is a Double-Edged Sword</h3>
+
+  <p>The orchestrator pattern is powerful, but it introduces a fundamental tension. The central controller becomes a <strong>single point of coupling</strong> — it knows about every service, every step, and every failure mode. If the workflow changes, the orchestrator changes. If a new step is added, the orchestrator is updated. This is fine for workflows that are inherently sequential and well-defined. It becomes a liability when the workflow is constantly evolving or when different teams own different steps.</p>
+
+  <p>This is the exact same tension you feel in application code when a coordinator class grows to 500 lines and knows about every dependency in the system. The pattern is correct — the question is whether your specific process is a good fit for centralized control or whether it should be decomposed into choreography (where each participant knows its own next step).</p>
+
+  <div class="convention-box">
+    <div class="convention-label">⚡ The Middle Ground: Coordination by Convention</div>
+    <p>There's a third approach between explicit orchestration and fully decentralized choreography: <strong>convention-based coordination</strong>. Instead of a central controller explicitly calling each step, the participants follow shared naming conventions, annotation contracts, or structural patterns that implicitly define the workflow.</p>
+    <p>This idea has deep roots. <strong>Spring Framework</strong> — which has been doing this since 2003 — is arguably the most successful example. Spring Boot's auto-configuration wires up an entire application context based on what's on the classpath. <code>@RestController</code> and <code>@GetMapping</code> route HTTP requests to handler methods without an explicit routing table. <code>@Autowired</code> resolves dependencies by type without manual registration. Hibernate takes it further: entity class name maps to table name, field names map to column names, and the framework generates the SQL — all by convention.</p>
+    <p>In the .NET world, MediatR's convention-based handler resolution does the same thing. ASP.NET Core's convention-based routing, model binding, and DI container follow the same principle. Ruby on Rails popularized the phrase "convention over configuration" in 2004. Python's Django follows it too.</p>
+    <p>The pattern transcends languages and frameworks because the underlying insight is mathematical: if you can define a <strong>deterministic mapping function</strong> between names and behaviors, you don't need explicit wiring. These aren't trendy ideas — they've been working across Java, Ruby, Python, and .NET for over twenty years.</p>
+  </div>
+
+  <pre><code><span class="comment">// Spring Boot: convention routes traffic, no explicit orchestrator</span>
+<span class="annotation">@RestController</span>
+<span class="annotation">@RequestMapping</span>(<span class="string">"/api/reservations"</span>)
+<span class="keyword">public class</span> <span class="type">ReservationController</span> {
+
+    <span class="annotation">@Autowired</span>
+    <span class="keyword">private</span> <span class="type">ReservationService</span> service;
+
+    <span class="annotation">@GetMapping</span>(<span class="string">"/{id}"</span>)
+    <span class="keyword">public</span> <span class="type">Reservation</span> getById(<span class="annotation">@PathVariable</span> <span class="type">String</span> id) {
+        <span class="keyword">return</span> service.findById(id);
+    }
+
+    <span class="annotation">@PostMapping</span>
+    <span class="keyword">public</span> <span class="type">Reservation</span> create(<span class="annotation">@RequestBody</span> <span class="type">ReservationRequest</span> request) {
+        <span class="keyword">return</span> service.create(request);
+    }
+}
+<span class="comment">// No routing table. No dispatcher configuration.</span>
+<span class="comment">// Convention resolves: /api/reservations/{id} → getById()</span></code></pre>
+
+  <p>That's an architectural judgment call, not a pattern choice: explicit orchestration when you need control, convention when you need velocity, choreography when you need independence.</p>
+
+  <div class="math-box">
+    <div class="math-label">Pure Math Foundation</div>
+    <div class="math-content">Both implement <strong>finite state machines</strong> (FSMs) modeled as <strong>directed acyclic graphs</strong> (DAGs). Each step is a state. Each transition has a condition (success, failure, timeout). If you can draw your workflow as a DAG, an orchestrator is a good fit. If your workflow has cycles, you need cycle detection and termination conditions — which is where FSM theory becomes directly applicable. Convention-based coordination adds a <strong>bijective mapping</strong> — <em>f(name) → handler</em> — where the function is deterministic and the convention defines the entire mapping without explicit enumeration.</div>
+  </div>
+
+  <hr>
+
+  <!-- PATTERN 5 -->
+  <div class="pattern-header">
+    <div class="pattern-number">05</div>
+    <div class="pattern-title">Infrastructure as Code ↔ Saga Pattern</div>
+  </div>
+
+  <h3>The Infrastructure Pattern</h3>
+
+  <p>Terraform, ARM templates, Bicep, Pulumi, CloudFormation — Infrastructure as Code tools let you declare the desired state of your infrastructure and then apply it. But the part that makes IaC a <em>pattern</em> rather than just a tool is what happens when things go wrong.</p>
+
+  <p>Consider a deployment that provisions five resources in sequence: a resource group, a virtual network, a subnet, an application gateway, and a web app. Resources 1 through 3 deploy successfully. Resource 4 — the application gateway — fails due to a quota limit. Now what?</p>
+
+  <p>You have three live resources that were created as part of an incomplete deployment. They're consuming cost, they're partially configured, and they're not serving any purpose because the deployment didn't finish. The IaC tool needs to <strong>roll back</strong> — destroy resources 3, 2, and 1 in reverse order to return the environment to its pre-deployment state.</p>
+
+  <div class="diagram-box">Deploy:   Resource Group → VNet → Subnet → App Gateway (FAIL!)
+                                               ↓
+Rollback: Delete Subnet → Delete VNet → Delete Resource Group</div>
+
+  <p>Every <code>terraform apply</code> that fails partway through has an implicit <code>terraform destroy</code> for the resources it already created. The IaC tool doesn't just create — it knows how to <em>un-create</em> in reverse order.</p>
+
+  <h3>The Application Pattern</h3>
+
+  <p>Inside your codebase, this is the <strong>Saga pattern</strong> — one of the most important (and most misunderstood) patterns in distributed systems. A saga breaks a business transaction that spans multiple services into a sequence of local transactions. Each local transaction has a <strong>compensating action</strong> — the inverse operation that undoes its effect if a later step fails.</p>
+
+  <pre><code><span class="comment">// Saga: each step has a compensating action</span>
+<span class="keyword">public class</span> <span class="type">OrderSaga</span>
+{
+    <span class="keyword">public async</span> Task&lt;<span class="type">SagaResult</span>&gt; Execute(<span class="type">OrderRequest</span> order)
+    {
+        <span class="keyword">var</span> compensations = <span class="keyword">new</span> Stack&lt;Func&lt;Task&gt;&gt;();
+
+        <span class="keyword">try</span>
+        {
+            <span class="comment">// Step 1: Reserve inventory</span>
+            <span class="keyword">var</span> reservation = <span class="keyword">await</span> _inventory.Reserve(order.Items);
+            compensations.Push(() => _inventory.Release(reservation.Id));
+
+            <span class="comment">// Step 2: Charge payment</span>
+            <span class="keyword">var</span> payment = <span class="keyword">await</span> _billing.Charge(order.Payment);
+            compensations.Push(() => _billing.Refund(payment.TransactionId));
+
+            <span class="comment">// Step 3: Schedule shipment</span>
+            <span class="keyword">var</span> shipment = <span class="keyword">await</span> _shipping.Schedule(order.Address, reservation);
+            compensations.Push(() => _shipping.Cancel(shipment.TrackingId));
+
+            <span class="keyword">return</span> <span class="type">SagaResult</span>.Success(payment, shipment);
+        }
+        <span class="keyword">catch</span> (Exception ex)
+        {
+            <span class="comment">// Compensate in reverse order</span>
+            <span class="keyword">while</span> (compensations.Count > 0)
+            {
+                <span class="keyword">var</span> compensate = compensations.Pop();
+                <span class="keyword">await</span> compensate();
+            }
+            <span class="keyword">return</span> <span class="type">SagaResult</span>.Failed(ex);
+        }
+    }
+}</code></pre>
+
+  <p>Reserve inventory, then charge payment, then schedule shipment. If shipment fails: refund the payment, then release the inventory. Each step's compensating action is the <strong>inverse</strong> of the original operation, executed in reverse order.</p>
+
+  <p>The IaC rollback and the Saga compensation are the same pattern. Both execute a sequence of operations, track what's been completed, and apply inverse operations in reverse order when a step fails.</p>
+
+  <div class="warning-box">
+    <div class="warning-label">⚠️ The Imperfect Inverse</div>
+    <p>Here's where both patterns get tricky — and where experienced engineers earn their gray hairs. A compensating action is not always a perfect undo.</p>
+    <p>When Terraform destroys a database it provisioned during a failed deployment, the data written to that database between creation and destruction might be gone. When a saga refunds a credit card charge, the customer still sees the charge and refund as separate line items — and the refund might take 3-5 business days. When you "cancel" a shipment that's already been picked from the warehouse, you've still consumed warehouse labor.</p>
+    <p>Mathematically, we want <em>f(x)</em> then <em>f⁻¹(x) = x</em>. In practice, <em>f⁻¹(f(x)) ≈ x</em>. The compensating action gets you <em>close</em> to the original state, but side effects leak. This is why saga design requires careful thinking about what "undo" actually means for each step — and why some steps are designed to be <strong>idempotent</strong> (safe to retry) rather than reversible.</p>
+  </div>
+
+  <div class="math-box">
+    <div class="math-label">Pure Math Foundation</div>
+    <div class="math-content">Both implement <strong>inverse functions</strong> — for a function <em>f</em>, there exists <em>f⁻¹</em> such that <em>f⁻¹(f(x)) = x</em>. The stack-based execution order (LIFO) is also significant: if resource B depends on resource A, you must destroy B before A. This preserves dependency ordering — the same reason you pop stack frames in reverse order during exception unwinding.</div>
+  </div>
+
+  <hr>
+
+  <!-- PATTERN 6 -->
+  <div class="pattern-header">
+    <div class="pattern-number">06</div>
+    <div class="pattern-title">Strangler Fig ↔ Adapter / Facade</div>
+  </div>
+
+  <h3>The Infrastructure Pattern</h3>
+
+  <p>The Strangler Fig pattern — named by Martin Fowler after the strangler fig tree that grows around a host tree and eventually replaces it — is the strategy behind every successful legacy migration.</p>
+
+  <div class="refuel-box">
+    <div class="refuel-label">✈️ The Aerial Refueling Analogy</div>
+    <p>Think of it like aerial refueling. A KC-135 Stratotanker pulls alongside a receiving aircraft at cruising altitude. The boom operator extends the fuel line and connects it to the receiver. Fuel flows from the new source while the original tanks are still powering the engines. At no point does the plane stop flying. At no point does it switch fuel sources in one sudden cutover. The new fuel flows in alongside the old, and the connection is severed only when the transfer is complete.</p>
+    <p>That's exactly how the Strangler Fig works.</p>
+  </div>
+
+  <p>You have a monolithic application that's been running in production for years. It handles reservations, billing, reporting, and notifications all in one deployable unit. You need to modernize it, but you can't shut it down for six months while you rewrite everything. The business runs on it. Revenue flows through it. Customers use it every day.</p>
+
+  <p>The Strangler Fig approach: stand up a new system alongside the old one. Route a small slice of traffic — say, just the read path for one feature — to the new service. The old monolith still handles everything else. Once the new service is stable, route the write path too. Then move the next feature. And the next. One capability at a time, the new system grows around the old one until the old system handles nothing and can be safely decommissioned.</p>
+
+  <div class="diagram-box">Phase 1:  Client → [Router] → 95% Monolith / 5% New Service
+Phase 2:  Client → [Router] → 70% Monolith / 30% New System
+Phase 3:  Client → [Router] → 20% Monolith / 80% New System
+Phase 4:  Client → [Router] → New System (monolith decommissioned)</div>
+
+  <h3>The Application Pattern</h3>
+
+  <p>Inside your codebase, this is the <strong>Adapter</strong> and <strong>Facade</strong> pattern working together. You wrap the legacy code in a new interface — an adapter that translates between the old system's contracts and the new system's contracts. Behind the adapter, you incrementally replace the legacy implementation with new code. The callers never know the implementation changed because the interface stays the same.</p>
+
+  <pre><code><span class="comment">// The facade: callers use this interface and never change</span>
+<span class="keyword">public interface</span> <span class="type">IReservationService</span>
+{
+    Task&lt;<span class="type">Reservation</span>&gt; Create(<span class="type">ReservationRequest</span> request);
+    Task&lt;<span class="type">Reservation</span>&gt; GetById(<span class="keyword">string</span> id);
+}
+
+<span class="comment">// Phase 1: Adapter wraps legacy, delegates everything</span>
+<span class="keyword">public class</span> <span class="type">ReservationServiceAdapter</span> : <span class="type">IReservationService</span>
+{
+    <span class="keyword">private readonly</span> <span class="type">LegacyReservationModule</span> _legacy;
+
+    <span class="keyword">public async</span> Task&lt;<span class="type">Reservation</span>&gt; Create(<span class="type">ReservationRequest</span> request)
+    {
+        <span class="keyword">var</span> legacyResult = <span class="keyword">await</span> _legacy.MakeReservation(
+            request.ToLegacyFormat());
+        <span class="keyword">return</span> legacyResult.ToModernFormat();
+    }
+}
+
+<span class="comment">// Phase 2: Reads go to new system, writes still legacy</span>
+<span class="keyword">public class</span> <span class="type">ReservationServiceAdapter</span> : <span class="type">IReservationService</span>
+{
+    <span class="keyword">private readonly</span> <span class="type">LegacyReservationModule</span> _legacy;
+    <span class="keyword">private readonly</span> <span class="type">NewReservationRepository</span> _newRepo;
+
+    <span class="keyword">public async</span> Task&lt;<span class="type">Reservation</span>&gt; GetById(<span class="keyword">string</span> id)
+    {
+        <span class="comment">// Reads now hit the new system</span>
+        <span class="keyword">return await</span> _newRepo.FindById(id);
+    }
+
+    <span class="keyword">public async</span> Task&lt;<span class="type">Reservation</span>&gt; Create(<span class="type">ReservationRequest</span> request)
+    {
+        <span class="comment">// Writes still use legacy (riskier operation)</span>
+        <span class="keyword">var</span> legacyResult = <span class="keyword">await</span> _legacy.MakeReservation(
+            request.ToLegacyFormat());
+        <span class="keyword">return</span> legacyResult.ToModernFormat();
+    }
+}
+
+<span class="comment">// Phase 3: Everything goes to new system, legacy removed</span>
+<span class="keyword">public class</span> <span class="type">ReservationService</span> : <span class="type">IReservationService</span>
+{
+    <span class="keyword">private readonly</span> <span class="type">IReservationRepository</span> _repo;
+
+    <span class="keyword">public async</span> Task&lt;<span class="type">Reservation</span>&gt; Create(<span class="type">ReservationRequest</span> request)
+        => <span class="keyword">await</span> _repo.Create(request);
+
+    <span class="keyword">public async</span> Task&lt;<span class="type">Reservation</span>&gt; GetById(<span class="keyword">string</span> id)
+        => <span class="keyword">await</span> _repo.FindById(id);
+}</code></pre>
+
+  <p>At the infrastructure level, the router gradually shifts traffic from old system to new. At the application level, the adapter gradually shifts implementation from legacy code to modern code. Same strategy, same incremental approach, same goal: replace a running system without stopping it.</p>
+
+  <div class="warning-box">
+    <div class="warning-label">🔥 Why This Is the Hardest Pattern to Execute</div>
+    <p>The Strangler Fig is conceptually simple and operationally brutal. The reason: <strong>data synchronization</strong>. During the migration, both systems are live. If the legacy system handles a write that the new system doesn't know about, you have data divergence. If the new system handles a read but the data hasn't been migrated yet, you return stale or missing results.</p>
+    <p>Every real-world strangler migration requires a data synchronization strategy — change data capture, dual writes, event sourcing, or periodic batch sync. This is where migrations fail in practice: not because the new code is wrong, but because the data boundary between old and new wasn't managed carefully enough.</p>
+  </div>
+
+  <div class="math-box">
+    <div class="math-label">Pure Math Foundation</div>
+    <div class="math-content">The Strangler Fig implements <strong>piecewise function replacement</strong> — monotonic substitution. The original system <em>F(x)</em> is progressively replaced: <em>G(x) = { f_new(x) if x ∈ S, F(x) otherwise }</em>, where set <em>S</em> only grows. The critical property is <strong>monotonicity</strong>: inputs handled by the new system only increase, never decrease. You never move functionality <em>back</em> to legacy — unless you're executing a Saga compensating action from Pattern 5.</div>
+  </div>
+
+  <hr>
+
+  <!-- BIGGER PICTURE -->
+  <h2>The Bigger Picture</h2>
+
+  <h3>From Communication to Consequence</h3>
+
+  <p>Episode 1's Middlemen patterns were about <strong>routing</strong> — getting the right message to the right place. This episode's Workflow patterns are about <strong>consequence</strong> — what happens over time, what happens when things fail, and what happens when you need to change something that's already running.</p>
+
+  <p>This is a meaningful shift in architectural thinking. Routing is stateless. Consequence is stateful. And the moment you introduce state — "where am I in this process?", "what have I already committed?", "how much has been migrated?" — the complexity surface area explodes.</p>
+
+  <h3>The Rollback Spectrum</h3>
+
+  <p>All three Workflow patterns deal with reversibility, but they sit at different points on what I call the <strong>rollback spectrum</strong>:</p>
+
+  <table class="trace-table">
+    <thead>
+      <tr>
+        <th>Pattern</th>
+        <th>Rollback Approach</th>
+        <th>Reversibility</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pattern-name">Orchestrator / Coordinator</td>
+        <td>Retry or restart from the failed step. State is preserved.</td>
+        <td><strong>High</strong> — you can resume.</td>
+      </tr>
+      <tr>
+        <td class="pattern-name">IaC / Saga</td>
+        <td>Execute compensating actions in reverse order. Each step has an explicit undo.</td>
+        <td><strong>Medium</strong> — close to original, but side effects may leak.</td>
+      </tr>
+      <tr>
+        <td class="pattern-name">Strangler Fig / Adapter</td>
+        <td>Route traffic back to the legacy system. The old code is still running.</td>
+        <td><strong>Full</strong> — as long as you haven't decommissioned the old system.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>This spectrum maps directly to risk. The Orchestrator is the safest — you can retry from a known state. The Saga is riskier — compensating actions may not perfectly undo every side effect. The Strangler Fig has a unique safety property: because the old system is still alive during migration, you can always route traffic back. The danger comes only when you decommission the old system. That's why experienced teams keep the legacy system running longer than they think they need to.</p>
+
+  <div class="registry-box">
+    <div class="registry-label">🔗 Looking Ahead: The Registry Problem</div>
+    <p>One pattern we didn't cover here but that underpins all three Workflows is the <strong>service registry</strong> — the system that tracks which services are alive, which endpoints are current, and which instance should handle the next request. At the infrastructure level, that's Consul, Eureka, Azure Service Fabric naming service, or Kubernetes service discovery. At the application level, it's your DI container or service locator.</p>
+    <p>We'll pick this up in Episode 3, where it connects naturally to Leader Election and coordination under dynamic conditions.</p>
+  </div>
+
+  <h3>Why This Matters for Your Career</h3>
+
+  <p>If you've ever been in a meeting where someone says, "Let's just rewrite it," and the room goes quiet — that's because the experienced people in that room have lived through a failed rewrite. They know that the Strangler Fig isn't just a pattern; it's a survival strategy. They know that saga compensation isn't just "undo" — it's "undo with caveats." They know that a 7-step orchestrator with no retry logic is a production incident waiting to happen.</p>
+
+  <p>Understanding these patterns — really understanding them, including their failure modes and tradeoffs — is the line between senior and staff. It's the difference between someone who can build a system and someone who can build a system that survives contact with reality.</p>
+
+  <!-- NEXT EPISODE -->
+  <div class="next-episode">
+    <h3>Coming Up: Episode 3 — "Resilience & Performance"</h3>
+    <p>We'll look at patterns that keep systems fast, alive, and coordinated under pressure: <strong>Circuit Breaker ↔ Try-Catch/Retry</strong>, <strong>CDN/Cache ↔ Cache-Aside/Memoization</strong>, and <strong>Leader Election ↔ Mutex/Lock</strong>. These are the patterns you don't appreciate until 3 AM on a Saturday.</p>
+  </div>
+
+  <p><em>The Pattern Mirror is a four-part series mapping enterprise infrastructure patterns to their application-level equivalents. Follow along for the complete series, or share this with someone who's making the jump from application development to systems architecture.</em></p>
+
+  <div class="author-box">
+    <div class="author-avatar">KM</div>
+    <div>
+      <div class="author-name">Kurt Mitchell</div>
+      <div class="author-title">Enterprise Architect & Senior Software Engineer | Designing distributed systems across DoD, aviation, and cloud platforms for 20 years.</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
