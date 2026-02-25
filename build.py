@@ -520,7 +520,7 @@ def build_episode(ep):
     page += PROGRESS_SCRIPT
     page += "</body>\n</html>"
 
-    write_file(ep["out"], page)
+    write_file(f"docs/{ep['out']}", page)
     print(f"  {ep['out']:20s}  {len(page):>8,} bytes  ({rt} min read, {len(conv.headings)} TOC entries)")
     return {
         "title": title,
@@ -604,7 +604,7 @@ def build_index(ep_data):
 
     page += FOOTER_TEMPLATE
     page += "</body>\n</html>"
-    write_file("index.html", page)
+    write_file("docs/index.html", page)
     print(f"  {'index.html':20s}  {len(page):>8,} bytes")
 
 
@@ -625,7 +625,7 @@ def build_carousel_page():
     page += FOOTER_TEMPLATE
     page += '<script type="module" src="assets/carousel.js"></script>\n'
     page += "</body>\n</html>"
-    write_file("carousel.html", page)
+    write_file("docs/carousel.html", page)
     print(f"  {'carousel.html':20s}  {len(page):>8,} bytes")
 
 
@@ -635,8 +635,8 @@ def validate():
     issues = []
     files_report = []
 
-    html_files = ["index.html", "carousel.html", "ep1.html", "ep2.html", "ep3.html", "ep4.html"]
-    other_files = ["assets/style.css", "assets/carousel.js", ".nojekyll"]
+    html_files = ["docs/index.html", "docs/carousel.html", "docs/ep1.html", "docs/ep2.html", "docs/ep3.html", "docs/ep4.html"]
+    other_files = ["docs/assets/style.css", "docs/assets/carousel.js", "docs/.nojekyll"]
 
     # Check all files exist and report sizes
     for f in html_files + other_files:
@@ -659,12 +659,12 @@ def validate():
             href = m.group(1)
             if href.startswith('http') or href.startswith('//') or href.startswith('mailto:'):
                 continue
-            target = os.path.join(BASE, href)
+            target = os.path.join(BASE, "docs", href)
             if not os.path.exists(target):
                 issues.append(f"BROKEN LINK in {f}: {href}")
 
     # CSS brace balance
-    css = read_file("assets/style.css")
+    css = read_file("docs/assets/style.css")
     opens = css.count('{')
     closes = css.count('}')
     if opens != closes:
@@ -689,7 +689,7 @@ if __name__ == "__main__":
     print("Building The Pattern Mirror blog...\n")
 
     # Create .nojekyll
-    write_file(".nojekyll", "")
+    write_file("docs/.nojekyll", "")
 
     # Build episodes
     print("Episodes:")
@@ -729,7 +729,7 @@ Open in browser:
 
 To deploy to GitHub Pages:
   1. Push all files to your repository
-  2. Go to Settings > Pages > Source: Deploy from branch > main > / (root)
+  2. Go to Settings > Pages > Source: Deploy from branch > main > /docs
   3. Your site will be live at https://[username].github.io/Pattern-Mirror/
 
 Broken links: {'none' if not [i for i in issues if 'BROKEN' in i] else ', '.join(i for i in issues if 'BROKEN' in i)}
