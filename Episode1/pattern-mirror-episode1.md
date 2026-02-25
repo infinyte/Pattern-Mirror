@@ -220,4 +220,4 @@ If you understand the Mediator pattern deeply — not just how to use MediatR, b
 
 *The Pattern Mirror is a four-part series mapping enterprise infrastructure patterns to their application-level equivalents. Follow along for the complete series, or share this with someone who's making the jump from application development to systems architecture.*
 
-**Kurt Mitchell** — Enterprise Architect & Senior Software Engineer | Designing distributed systems across DoD, aviation, and cloud platforms for 20 years.
+**Kurt Mitchell** — Enterprise Architect & Senior Software Engineer | Designing distributed systems across DoD, aviation, healthcare, hospitality and cloud platforms for 20 years.

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive carousel showing 12 enterprise-to-application pattern pairs with animated SVG diagrams.">
+<meta property="og:title" content="Pattern Mirror Carousel">
+<meta property="og:description" content="Interactive carousel showing 12 enterprise-to-application pattern pairs with animated SVG diagrams.">
+<meta property="og:type" content="website">
+<title>Pattern Carousel — The Pattern Mirror</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<nav class="navbar">
+<a href="index.html" class="navbar-logo">The Pattern Mirror</a>
+<input type="checkbox" id="nav-toggle" class="navbar-toggle" hidden>
+<label for="nav-toggle" class="navbar-hamburger" aria-label="Toggle navigation">
+<span></span><span></span><span></span>
+</label>
+<div class="navbar-links">
+<a href="ep1.html">Ep 1</a>
+<a href="ep2.html">Ep 2</a>
+<a href="ep3.html">Ep 3</a>
+<a href="ep4.html">Ep 4</a>
+<a href="carousel.html">Carousel</a>
+</div>
+</nav>
+<main class="carousel-page">
+<div id="carousel-root"></div>
+</main>
+<footer>
+<div class="footer-title">The Pattern Mirror</div>
+<div class="footer-tagline">Every Enterprise Pattern Has a Code-Level Twin</div>
+<div class="footer-links">
+<div class="footer-col">
+<h4>Episodes</h4>
+<a href="ep1.html">Ep 1: The Middlemen</a>
+<a href="ep2.html">Ep 2: The Workflows</a>
+<a href="ep3.html">Ep 3: Resilience &amp; Performance</a>
+<a href="ep4.html">Ep 4: The Deep End</a>
+</div>
+<div class="footer-col">
+<h4>More</h4>
+<a href="carousel.html">Pattern Carousel</a>
+<a href="index.html">Series Home</a>
+</div>
+</div>
+<p class="footer-attribution">Built with Claude</p>
+</footer>
+<script type="module" src="assets/carousel.js"></script>
+</body>
+</html>
