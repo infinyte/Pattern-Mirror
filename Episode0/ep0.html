@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Pattern Mirror — Episode 0: The Prologue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================
+       The Pattern Mirror — Canonical Stylesheet
+       Version: 1.0 (Ep3/4 Standard)
+    ========================================= */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0e17;
+      color: #e5e7eb;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* --- Series Badge --- */
+    .series-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #1e3a5f, #1e40af);
+      color: #93c5fd;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    /* --- Typography --- */
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 42px;
+      font-weight: 900;
+      color: #f9fafb;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #9ca3af;
+      font-style: italic;
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #f9fafb;
+      margin-top: 48px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #d1d5db;
+      margin-top: 32px;
+      margin-bottom: 14px;
+    }
+
+    p { margin-bottom: 18px; color: #d1d5db; }
+    strong { color: #f9fafb; font-weight: 700; }
+    em { color: #d1d5db; font-style: italic; }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    hr {
+      border: none;
+      border-top: 1px solid #374151;
+      margin: 40px 0;
+    }
+
+    /* --- Callouts --- */
+    .math-callout {
+      background: #1f2937;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .math-callout h3 {
+      color: #fbbf24;
+      margin-top: 0;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .math-callout p { color: #d1d5db; }
+
+    .insight-callout {
+      background: #1a2e1a;
+      border-left: 4px solid #22c55e;
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .insight-callout h3 { color: #86efac; margin-top: 0; font-size: 18px; }
+    .insight-callout p { color: #86efac; }
+
+    .bridge-callout {
+      background: #1e1b3a;
+      border-left: 4px solid #818cf8;
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .bridge-callout h3 { color: #a5b4fc; margin-top: 0; font-size: 18px; }
+    .bridge-callout p { color: #c7d2fe; }
+
+    /* --- Cards --- */
+    .card {
+      background: #1f2937;
+      border-radius: 12px;
+      padding: 28px;
+      margin: 24px 0;
+    }
+    .card h3 { margin-top: 0; }
+
+    /* --- Tables --- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      background: #1f2937;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    th {
+      background: #111827;
+      color: #93c5fd;
+      font-weight: 700;
+      text-align: left;
+      padding: 14px 18px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    td {
+      padding: 14px 18px;
+      border-top: 1px solid #374151;
+      color: #d1d5db;
+      font-size: 16px;
+    }
+    tr:hover td { background: #263348; }
+
+    /* --- Footer --- */
+    .series-footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid #374151;
+      text-align: center;
+    }
+    .series-footer p { color: #6b7280; font-size: 15px; }
+    .author-byline {
+      margin-top: 24px;
+      padding: 20px;
+      background: #1f2937;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .author-byline strong { color: #60a5fa; font-size: 17px; }
+    .author-byline p { color: #9ca3af; font-size: 15px; margin-bottom: 0; }
+
+    /* =========================================
+       ANIMATION CONTAINERS
+    ========================================= */
+
+    .animation-container {
+      background: #0d1220;
+      border: 1px solid #1e2d45;
+      border-radius: 12px;
+      padding: 0;
+      margin: 32px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .animation-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 11px;
+      color: #4b6a8a;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 12px 20px 0;
+    }
+
+    .animation-caption {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 12px;
+      color: #4b6a8a;
+      text-align: center;
+      padding: 8px 20px 16px;
+      letter-spacing: 0.5px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+    }
+
+    /* Episode 0 specific: no pattern-header needed, 
+       use a section-header variant with subtle divider */
+    .section-header {
+      margin-top: 56px;
+      margin-bottom: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #374151;
+    }
+
+    .section-header h2 {
+      margin-top: 0;
+    }
+
+    /* Series roadmap table styling */
+    .roadmap-table td:first-child {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      color: #93c5fd;
+      white-space: nowrap;
+      font-size: 15px;
+    }
+
+    .roadmap-table td:nth-child(2) {
+      color: #f9fafb;
+      font-weight: 600;
+    }
+
+    /* Closing episode nav */
+    .ep-nav {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 48px;
+    }
+
+    .ep-nav a {
+      background: linear-gradient(135deg, #1e3a5f, #1e40af);
+      color: #93c5fd;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+    .ep-nav a:hover {
+      background: linear-gradient(135deg, #1e40af, #2563eb);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Series Badge -->
+  <div class="series-badge">The Pattern Mirror &bull; Prologue</div>
+
+  <!-- Title -->
+  <h1>Before the Structure,<br>There Is the Structure</h1>
+  <p class="subtitle">A precise statement of what this series claims — and what it doesn't — before the first pattern appears.</p>
+
+  <hr>
+
+  <!-- Opening -->
+  <p>There is a moment that happens to engineers — usually somewhere between senior and staff — where the work stops feeling like a collection of separate problems and starts feeling like variations on a single problem. The infrastructure team is arguing about service mesh topology. Three floors up, the application team is debating component coupling in the domain layer. In a conference room somewhere in between, architects are drawing boxes and arrows that look suspiciously like both conversations at once.</p>
+
+  <p>Most engineers notice this and move on. A few stop and ask why.</p>
+
+  <p>This series is for the ones who stop and ask why.</p>
+
+  <!-- ============================================================ -->
+  <div class="section-header">
+    <h2>What You Are About to Read</h2>
+  </div>
+
+  <p><strong>The Pattern Mirror</strong> is a four-part technical series in which I map twelve enterprise infrastructure patterns to their application-level equivalents — and trace each pair back to the pure mathematics that underlies both. Over the course of the series, I will show that a Reverse Proxy and a Mediator are structural analogs. That a Circuit Breaker and a Bulkhead share a topology with Retry and Timeout. That Infrastructure as Code and the Saga pattern are solving the same abstract coordination problem at different levels of the stack.</p>
+
+  <p>Before I do any of that, I need to be precise about what kind of claim that is — because it is easy to misread, and a misread thesis will poison everything that follows.</p>
+
+  <!-- ============================================================ -->
+  <div class="section-header">
+    <h2>What I Am Not Claiming</h2>
+  </div>
+
+  <p>I am not claiming that a Reverse Proxy <em>is</em> a Mediator. They are not the same thing. They solve different concrete problems, operate at different levels of the software stack, carry different operational properties, and are implemented in entirely different contexts. A senior network engineer and a senior application engineer would correctly tell you that conflating them is a category error.</p>
+
+  <p>I am not claiming that infrastructure patterns and application patterns are interchangeable. You cannot swap one for the other. Knowing the Mediator pattern does not tell you how to configure Nginx. Knowing how a service mesh works does not automatically give you insight into the Observer pattern.</p>
+
+  <p>I am not presenting superficial analogies. <em>"Both things sit in the middle"</em> is not the argument. That level of observation is trivia. The claim I am making is more precise than that, and it needs to be stated precisely before the first pattern appears on the page.</p>
+
+  <!-- ============================================================ -->
+  <div class="section-header">
+    <h2>What I Am Claiming</h2>
+  </div>
+
+  <!-- ===================== ANIMATION A ========================== -->
+  <div class="animation-container">
+    <div class="animation-label">Fig. 1 — Structure-Preserving Map (Functor)</div>
+    <canvas id="functorCanvas" height="260"></canvas>
+    <div class="animation-caption">Two distinct graphs sharing identical structure. The objects differ — the relationships are preserved.</div>
+  </div>
+
+  <p>In mathematics, there is a field called <strong>category theory</strong> — sometimes called "the mathematics of mathematics" — which studies not objects themselves, but the <em>relationships between objects</em> and the <em>maps that preserve those relationships</em>. Category theory gives us precise vocabulary for something that engineers have been noticing informally for decades: that two things in completely different domains can share the same abstract structure, even when their surface-level implementations are entirely different.</p>
+
+  <p>The technical term for a structure-preserving map between two categories is a <strong>functor</strong>. When a functor exists between two structures, it means that the relationships between components in one domain correspond to the relationships between components in the other — even if the components themselves are nothing alike. The functor does not make the two structures identical. It reveals that they are different instantiations of the same underlying form.</p>
+
+  <div class="insight-callout">
+    <h3>🎵 A Real-World Functor</h3>
+    <p>The clearest example I know has nothing to do with software. Take a melody — say, the opening phrase of <em>Ode to Joy</em> — written in C major. Now transpose it to G major. Every single note has changed. The pitch of each individual note in G major is a completely different physical frequency than its counterpart in C major. And yet any listener will immediately recognize it as the same melody. Why? Because transposition is a functor. It maps every note to a different note, but it <em>preserves the relationships between notes</em> — the intervals, the distances, the structure of the phrase — with perfect fidelity. The objects changed completely. The structure was left intact.</p>
+  </div>
+
+  <p>That is the precise claim this series is making.</p>
+
+  <p>A Reverse Proxy and a Mediator are not the same pattern. But there exists a structure-preserving correspondence between them — a functor, in the category-theoretic sense — that maps the components of one to the components of the other while preserving the essential relationships: the decoupling of producers from consumers, the centralization of routing logic, the indirection that makes both sides independently evolvable. Same form. Different substance. Different level of the stack. Not a coincidence.</p>
+
+  <p>This idea — that the same abstract structure appears at multiple levels of a system — is not new. It shows up throughout the history of formal science.</p>
+
+  <!-- ============================================================ -->
+  <div class="section-header">
+    <h2>A Precedent Worth Naming</h2>
+  </div>
+
+  <!-- ===================== ANIMATION B ========================== -->
+  <div class="animation-container">
+    <div class="animation-label">Fig. 2 — The Chomsky Hierarchy</div>
+    <canvas id="chomskyCanvas" height="300"></canvas>
+    <div class="animation-caption">Formal structure organizing itself into levels of abstraction that correspond to each other in precise ways.</div>
+  </div>
+
+  <p>In 1956, Noam Chomsky published a paper on formal language theory that introduced what is now called the <strong>Chomsky Hierarchy</strong> — a classification of formal grammars into four nested levels of expressive power, each level a strict superset of the one below it. The hierarchy is not merely a taxonomy. It is a proof that formal structure organizes itself into <em>levels of abstraction that correspond to each other in precise ways</em>. A Regular grammar and a Context-Free grammar are not the same thing. They solve different problems with different mechanisms. But they exist in a formal correspondence — one is a constrained version of the other, and that constraint relationship carries mathematical weight.</p>
+
+  <p>Software architecture has its own version of this hierarchy. Infrastructure patterns and application patterns are not at the same level of the stack, just as Regular and Context-Free grammars are not at the same level of expressive power. But the structural correspondences between levels are real, formal, and instructive — for exactly the same reason that understanding the Chomsky Hierarchy makes you a better language theorist. You don't just learn what each level <em>does</em>. You learn how the levels <em>relate to each other</em>. That relational understanding is what this series is after.</p>
+
+  <!-- ============================================================ -->
+  <div class="section-header">
+    <h2>Why This Matters for Working Engineers</h2>
+  </div>
+
+  <!-- ===================== ANIMATION C ========================== -->
+  <div class="animation-container">
+    <div class="animation-label">Fig. 3 — Same Structure, Different Layer</div>
+    <canvas id="topologyCanvas" height="320"></canvas>
+    <div class="animation-caption">Infrastructure topology and application topology rendered as the same directed graph — differentiated only by label.</div>
+  </div>
+
+  <p>If this thesis were only mathematically interesting, it would belong in a journal, not a technical newsletter. It belongs here because the practical payoff is significant.</p>
+
+  <p>Engineers who understand these structural correspondences develop architectural intuition faster. When you encounter a new pattern at the infrastructure level, you already have a working mental model for how it behaves at the application level — because you have seen the abstract structure before, even if you have not seen this specific instantiation. The learning compounds. The surface area of "new things to learn" shrinks because you start recognizing that many apparently new things are the same thing wearing different clothes.</p>
+
+  <p>There is also a communication benefit that is underrated in practice. Infrastructure engineers and application engineers often talk past each other — not because they disagree, but because they are using different vocabularies to describe the same structural intuitions. Understanding the correspondence gives you fluency in both dialects. It makes you the person in the room who can translate.</p>
+
+  <p>And there is a design benefit. When you see both levels of the stack as instantiations of the same abstract structure, you start asking better questions. If the infrastructure pattern handles failure in a certain way, what is the application-level equivalent doing with failure? Are they consistent? Should they be? The structural parallel surfaces questions that would otherwise stay invisible.</p>
+
+  <!-- ============================================================ -->
+  <div class="section-header">
+    <h2>How the Series Is Organized</h2>
+  </div>
+
+  <p>I have grouped the four episodes by the <em>type</em> of structural problem each set of patterns solves:</p>
+
+  <table class="roadmap-table">
+    <thead>
+      <tr>
+        <th>Episode</th>
+        <th>Title</th>
+        <th>Pattern Pairs</th>
+        <th>Math Foundation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ep 1</td>
+        <td>The Middlemen</td>
+        <td>Reverse Proxy ↔ Mediator, API Gateway ↔ Facade/Broker, Service Bus ↔ Observer/Pub-Sub</td>
+        <td>Graph topology, hub-and-spoke networks</td>
+      </tr>
+      <tr>
+        <td>Ep 2</td>
+        <td>The Workflows</td>
+        <td>Orchestrator ↔ Coordinator, IaC ↔ Saga, Strangler Fig ↔ Adapter/Facade</td>
+        <td>Directed acyclic graphs, state machines</td>
+      </tr>
+      <tr>
+        <td>Ep 3</td>
+        <td>Resilience &amp; Performance</td>
+        <td>Circuit Breaker ↔ Retry/Timeout, Bulkhead ↔ Semaphore, CDN/Cache ↔ Cache-Aside</td>
+        <td>Queueing theory, control systems</td>
+      </tr>
+      <tr>
+        <td>Ep 4</td>
+        <td>The Deep End</td>
+        <td>Leader Election ↔ Mutex/Lock, Service Discovery ↔ Registry, Event Sourcing ↔ Memento/Command</td>
+        <td>Consensus theory, distributed state</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Each episode follows the same structure: the infrastructure pattern, the application pattern, the structural correspondence between them, the mathematical foundation that explains why the correspondence exists, and — wherever possible — working code that makes the abstract concrete.</p>
+
+  <!-- ============================================================ -->
+  <div class="section-header">
+    <h2>A Note on Rigor</h2>
+  </div>
+
+  <p>This series makes structural claims. Structural claims can be evaluated. If you read a pattern comparison and think the correspondence is a stretch, the right response is to identify the specific structural property that doesn't map cleanly — not to reject the idea that correspondences exist. My goal is precision, not poetry.</p>
+
+  <p>The mathematics in this series is real. Category theory, graph topology, state machine formalism, queueing theory, consensus proofs — these are not decorative. They are the underlying reason the correspondences exist. You do not need to be a mathematician to follow the series, but if you are mathematically inclined, the formal foundations are there to engage with.</p>
+
+  <div class="math-callout">
+    <h3>⊗ The Formal Statement</h3>
+    <p>For every infrastructure pattern <em>P<sub>i</sub></em> and its application-level analog <em>P<sub>a</sub></em>, there exists a functor <em>F : 𝒞<sub>infra</sub> → 𝒞<sub>app</sub></em> such that the morphisms encoding component relationships in <em>P<sub>i</sub></em> are preserved under <em>F</em> in <em>P<sub>a</sub></em>. The patterns are not equal. The functor between them is.</p>
+  </div>
+
+  <p>If you came in skeptical — if your first instinct was that comparing infrastructure patterns to application patterns is an apples-to-oranges exercise — I understand that instinct. It is the correct response to a superficial analogy. The Reverse Proxy and the Mediator are not the same pattern. The functor between them is.</p>
+
+  <!-- Next Episode -->
+  <div class="card">
+    <h3>Episode 1 — "The Middlemen"</h3>
+    <p>The first patterns I will map are the intermediaries: the Reverse Proxy and the Mediator, the API Gateway and the Facade, the Service Bus and the Observer. Three infrastructure/application pairs where a single centralized node decouples every producer from every consumer. The mathematical foundation is graph topology, and the thesis becomes concrete for the first time.</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="series-footer">
+    <p><em>The Pattern Mirror is a four-part series mapping enterprise infrastructure patterns to their application-level equivalents.</em></p>
+    <div class="author-byline">
+      <strong>Kurt Mitchell</strong>
+      <p>Enterprise Architect &amp; Senior Software Engineer | Designing distributed systems across DoD, aviation, and cloud platforms for 20 years.</p>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ============================================================
+     ANIMATION SCRIPTS
+============================================================ -->
+<script>
+/* ── Shared utilities ── */
+function lerp(a, b, t) { return a + (b - a) * t; }
+function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+/* ──────────────────────────────────────────────────────────────
+   ANIMATION A — Functor Diagram
+   Two graphs (A-B-C) and (X-Y-Z) with identical edge topology,
+   connected by a labeled mapping arrow.
+   Sequence:
+     0.00–0.25  Left graph nodes fade in
+     0.20–0.40  Left graph edges draw
+     0.45–0.65  Right graph nodes fade in
+     0.60–0.80  Right graph edges draw
+     0.82–1.00  Functor arrow draws + label appears
+────────────────────────────────────────────────────────────── */
+(function() {
+  const canvas = document.getElementById('functorCanvas');
+  const ctx = canvas.getContext('2d');
+  let progress = 0;
+  let animating = true;
+  let lastTime = null;
+  const DURATION = 3600;
+
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    canvas.width = w;
+    canvas.style.width = w + 'px';
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); if (!animating) draw(progress); });
+
+  const ACCENT   = '#60a5fa';
+  const ACCENT2  = '#93c5fd';
+  const TEAL     = '#67e8f9';
+  const AMBER    = '#fbbf24';
+  const SURFACE  = '#111827';
+  const BORDER   = '#1e2d45';
+  const TEXT_DIM = '#4b6a8a';
+  const TEXT_PRI = '#e5e7eb';
+
+  /* Node positions are expressed as fractions of (w, h) */
+  function getLayout(w, h) {
+    const pad = 40;
+    const midY = h / 2;
+    const gw = (w - pad * 2) * 0.38; /* graph width budget */
+
+    /* Left graph — triangle: top-center, bottom-left, bottom-right */
+    const lx = pad + gw / 2;
+    const L = [
+      { x: lx,          y: midY - 60, label: 'A' },
+      { x: lx - 70,     y: midY + 50, label: 'B' },
+      { x: lx + 70,     y: midY + 50, label: 'C' },
+    ];
+
+    /* Right graph — same topology, different position */
+    const rx = w - pad - gw / 2;
+    const R = [
+      { x: rx,          y: midY - 60, label: 'X' },
+      { x: rx - 70,     y: midY + 50, label: 'Y' },
+      { x: rx + 70,     y: midY + 50, label: 'Z' },
+    ];
+
+    /* Edges: both graphs have identical structure */
+    const LE = [[0,1],[0,2],[1,2]];
+    const RE = [[0,1],[0,2],[1,2]];
+
+    return { L, R, LE, RE, w, h };
+  }
+
+  function drawNode(ctx, x, y, label, alpha, color, r = 22) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    /* Glow */
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 18;
+    /* Circle */
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = SURFACE;
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = color;
+    ctx.stroke();
+    /* Label */
+    ctx.shadowBlur = 0;
+    ctx.font = "700 15px 'Source Code Pro', monospace";
+    ctx.fillStyle = color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, x, y);
+    ctx.restore();
+  }
+
+  function drawEdge(ctx, x1, y1, x2, y2, t, color, r = 22) {
+    if (t <= 0) return;
+    /* Shorten endpoints to stop at node circumference */
+    const dx = x2 - x1, dy = y2 - y1;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const ux = dx/dist, uy = dy/dist;
+    const sx = x1 + ux * r, sy = y1 + uy * r;
+    const ex0 = x2 - ux * r, ey0 = y2 - uy * r;
+    const ex = lerp(sx, ex0, t), ey = lerp(sy, ey0, t);
+
+    ctx.save();
+    ctx.globalAlpha = Math.min(t * 1.5, 0.7);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 4]);
+    ctx.lineDashOffset = -performance.now() * 0.015;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 6;
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(ex, ey);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawFunctorArrow(ctx, lx, rx, midY, t) {
+    if (t <= 0) return;
+    const gapX1 = lx + 95, gapX2 = rx - 95;
+    const ay = midY - 10;
+    const ex = lerp(gapX1 + 20, gapX2 - 20, t);
+
+    ctx.save();
+    ctx.globalAlpha = t;
+
+    /* Dashed line */
+    ctx.strokeStyle = AMBER;
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 4]);
+    ctx.shadowColor = AMBER;
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+    ctx.moveTo(gapX1 + 20, ay);
+    ctx.lineTo(ex, ay);
+    ctx.stroke();
+
+    /* Arrowhead when near end */
+    if (t > 0.85) {
+      const aAlpha = (t - 0.85) / 0.15;
+      ctx.globalAlpha = aAlpha;
+      ctx.setLineDash([]);
+      ctx.fillStyle = AMBER;
+      ctx.beginPath();
+      ctx.moveTo(gapX2 - 20, ay);
+      ctx.lineTo(gapX2 - 30, ay - 7);
+      ctx.lineTo(gapX2 - 30, ay + 7);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    /* Label */
+    if (t > 0.5) {
+      const lAlpha = Math.min((t - 0.5) * 2, 1);
+      ctx.globalAlpha = lAlpha;
+      ctx.setLineDash([]);
+      ctx.shadowBlur = 0;
+      const midX = (gapX1 + gapX2) / 2;
+      ctx.font = "500 12px 'Source Code Pro', monospace";
+      ctx.fillStyle = AMBER;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+      ctx.fillText('F (functor)', midX, ay - 10);
+      ctx.fillStyle = TEXT_DIM;
+      ctx.font = "400 11px 'Source Code Pro', monospace";
+      ctx.fillText('structure-preserving map', midX, ay - 24);
+    }
+    ctx.restore();
+  }
+
+  function draw(p) {
+    const { L, R, LE, RE, w, h } = getLayout(canvas.width, canvas.height);
+    ctx.clearRect(0, 0, w, h);
+
+    /* --- Left graph label --- */
+    const lblAlpha = easeOut(Math.min(p / 0.25, 1));
+    ctx.save();
+    ctx.globalAlpha = lblAlpha * 0.5;
+    ctx.font = "600 13px 'Source Sans 3', sans-serif";
+    ctx.fillStyle = ACCENT2;
+    ctx.textAlign = 'center';
+    ctx.fillText('Category  𝒞₁', L[0].x, 30);
+    ctx.restore();
+
+    /* --- Right graph label --- */
+    const rLblAlpha = easeOut(Math.max(0, Math.min((p - 0.45) / 0.20, 1)));
+    ctx.save();
+    ctx.globalAlpha = rLblAlpha * 0.5;
+    ctx.font = "600 13px 'Source Sans 3', sans-serif";
+    ctx.fillStyle = TEAL;
+    ctx.textAlign = 'center';
+    ctx.fillText('Category  𝒞₂', R[0].x, 30);
+    ctx.restore();
+
+    /* --- Left edges --- */
+    const edgeTL = easeInOut(Math.max(0, Math.min((p - 0.20) / 0.20, 1)));
+    LE.forEach(([i, j]) => drawEdge(ctx, L[i].x, L[i].y, L[j].x, L[j].y, edgeTL, ACCENT + 'aa'));
+
+    /* --- Right edges --- */
+    const edgeTR = easeInOut(Math.max(0, Math.min((p - 0.60) / 0.20, 1)));
+    RE.forEach(([i, j]) => drawEdge(ctx, R[i].x, R[i].y, R[j].x, R[j].y, edgeTR, TEAL + 'aa'));
+
+    /* --- Left nodes --- */
+    const nodeTL = easeOut(Math.min(p / 0.25, 1));
+    L.forEach(n => drawNode(ctx, n.x, n.y, n.label, nodeTL, ACCENT));
+
+    /* --- Right nodes --- */
+    const nodeTR = easeOut(Math.max(0, Math.min((p - 0.45) / 0.20, 1)));
+    R.forEach(n => drawNode(ctx, n.x, n.y, n.label, nodeTR, TEAL));
+
+    /* --- Functor arrow --- */
+    const arrowT = easeInOut(Math.max(0, Math.min((p - 0.82) / 0.18, 1)));
+    drawFunctorArrow(ctx, L[0].x, R[0].x, canvas.height / 2, arrowT);
+  }
+
+  function animate(ts) {
+    if (!lastTime) lastTime = ts;
+    const dt = ts - lastTime;
+    lastTime = ts;
+    progress = Math.min(progress + dt / DURATION, 1);
+    draw(progress);
+    if (progress < 1) requestAnimationFrame(animate);
+    else animating = false;
+  }
+
+  /* Intersection observer — start when visible */
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      observer.disconnect();
+      requestAnimationFrame(animate);
+    }
+  }, { threshold: 0.3 });
+  observer.observe(canvas);
+})();
+
+
+/* ──────────────────────────────────────────────────────────────
+   ANIMATION B — Chomsky Hierarchy
+   Four nested rounded rectangles appearing from outermost
+   inward, each labeled.
+   Sequence: staggered reveals 0.0 / 0.25 / 0.50 / 0.75
+   Then connecting line annotations appear.
+────────────────────────────────────────────────────────────── */
+(function() {
+  const canvas = document.getElementById('chomskyCanvas');
+  const ctx = canvas.getContext('2d');
+  let progress = 0;
+  let lastTime = null;
+  const DURATION = 3200;
+
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    canvas.width = w;
+    canvas.style.width = w + 'px';
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const LAYERS = [
+    { label: 'Turing-Complete',  sub: 'Unrestricted Grammar',  color: '#818cf8', bg: '#0d0f2a' },
+    { label: 'Context-Sensitive', sub: 'Linear-Bounded Automaton', color: '#60a5fa', bg: '#0d1525' },
+    { label: 'Context-Free',     sub: 'Pushdown Automaton',    color: '#34d399', bg: '#0d1f1a' },
+    { label: 'Regular',          sub: 'Finite Automaton',      color: '#fbbf24', bg: '#1a1505' },
+  ];
+
+  function draw(p) {
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    const cx = w / 2;
+    const cy = h / 2 + 10;
+    const maxW = Math.min(w - 40, 640);
+    const maxH = h - 60;
+
+    LAYERS.forEach((layer, i) => {
+      const startP = i * 0.23;
+      const t = easeOut(Math.max(0, Math.min((p - startP) / 0.22, 1)));
+      if (t <= 0) return;
+
+      const fraction = 1 - i * 0.2;
+      const bw = maxW * fraction * t;
+      const bh = maxH * fraction * t;
+      const bx = cx - bw / 2;
+      const by = cy - bh / 2;
+      const r = 14;
+
+      /* Fill */
+      ctx.save();
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = layer.bg;
+      ctx.beginPath();
+      ctx.roundRect(bx, by, bw, bh, r);
+      ctx.fill();
+
+      /* Border */
+      ctx.globalAlpha = t * 0.9;
+      ctx.strokeStyle = layer.color;
+      ctx.lineWidth = i === 3 ? 2.5 : 1.5;
+      ctx.shadowColor = layer.color;
+      ctx.shadowBlur = i === 3 ? 12 : 6;
+      ctx.beginPath();
+      ctx.roundRect(bx, by, bw, bh, r);
+      ctx.stroke();
+      ctx.restore();
+
+      /* Label — top-left inside box */
+      if (t > 0.4) {
+        const lAlpha = Math.min((t - 0.4) / 0.4, 1);
+        ctx.save();
+        ctx.globalAlpha = lAlpha;
+        ctx.font = "700 13px 'Merriweather', serif";
+        ctx.fillStyle = layer.color;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.shadowColor = layer.color;
+        ctx.shadowBlur = 8;
+        ctx.fillText(layer.label, bx + 14, by + 12);
+        ctx.shadowBlur = 0;
+        ctx.font = "400 11px 'Source Code Pro', monospace";
+        ctx.fillStyle = layer.color + 'aa';
+        ctx.fillText(layer.sub, bx + 14, by + 30);
+        ctx.restore();
+      }
+    });
+
+    /* Center annotation when all layers visible */
+    if (p > 0.92) {
+      const aAlpha = Math.min((p - 0.92) / 0.08, 1);
+      ctx.save();
+      ctx.globalAlpha = aAlpha * 0.7;
+      ctx.font = "italic 13px 'Source Sans 3', sans-serif";
+      ctx.fillStyle = '#9ca3af';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('Each level is a constrained superset of the one inside it.', cx, cy);
+      ctx.restore();
+    }
+  }
+
+  function animate(ts) {
+    if (!lastTime) lastTime = ts;
+    progress = Math.min(progress + (ts - lastTime) / DURATION, 1);
+    lastTime = ts;
+    draw(progress);
+    if (progress < 1) requestAnimationFrame(animate);
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      observer.disconnect();
+      requestAnimationFrame(animate);
+    }
+  }, { threshold: 0.3 });
+  observer.observe(canvas);
+})();
+
+
+/* ──────────────────────────────────────────────────────────────
+   ANIMATION C — Split-screen topology
+   Left: infrastructure labels (Load Balancer, Service A/B/C, Database)
+   Right: application labels (Controller, Service Layer, Repo A/B/C)
+   Both drawn as identical directed graphs.
+   Phase 1 (0.0–0.45): left side builds
+   Phase 2 (0.45–0.80): right side builds
+   Phase 3 (0.82–1.0): both labels fade out, abstract labels fade in,
+                        center divider collapses — "same graph" reveal
+────────────────────────────────────────────────────────────── */
+(function() {
+  const canvas = document.getElementById('topologyCanvas');
+  const ctx = canvas.getContext('2d');
+  let progress = 0;
+  let lastTime = null;
+  const DURATION = 5000;
+
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    canvas.width = w;
+    canvas.style.width = w + 'px';
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* Graph topology: 5 nodes, hub-and-spoke + bottom row */
+  /* Positions as {rx, ry} — fractions relative to a subgraph bounding box */
+  const TOPO = [
+    { rx: 0.5,  ry: 0.15 }, /* 0: top / hub */
+    { rx: 0.2,  ry: 0.5  }, /* 1: mid-left */
+    { rx: 0.8,  ry: 0.5  }, /* 2: mid-right */
+    { rx: 0.2,  ry: 0.85 }, /* 3: bot-left */
+    { rx: 0.8,  ry: 0.85 }, /* 4: bot-right */
+  ];
+
+  const EDGES = [[0,1],[0,2],[1,3],[2,4],[1,2]];
+
+  const INFRA_LABELS  = ['Load Balancer', 'Service A',   'Service B',   'Database A', 'Database B'];
+  const APP_LABELS    = ['Controller',    'Svc Layer A', 'Svc Layer B', 'Repo A',     'Repo B'];
+  const ABSTRACT_LABELS = ['Hub', 'Node₁', 'Node₂', 'Leaf₁', 'Leaf₂'];
+
+  const C_INFRA = '#60a5fa';
+  const C_APP   = '#34d399';
+  const C_ABS   = '#fbbf24';
+
+  function graphNodes(side, w, h) {
+    /* side: 'left' | 'right' | 'center' */
+    const margin = 28;
+    const halfW = w / 2;
+    let ox, oy, gw, gh;
+    if (side === 'left')   { ox = margin; gw = halfW - margin * 1.5; }
+    else if (side === 'right') { ox = halfW + margin * 0.5; gw = halfW - margin * 1.5; }
+    else { ox = margin * 2; gw = w - margin * 4; } /* center / merged */
+    oy = 20; gh = h - 60;
+
+    return TOPO.map(t => ({
+      x: ox + t.rx * gw,
+      y: oy + t.ry * gh,
+    }));
+  }
+
+  function drawGraph(ctx, nodes, edges, color, nodeAlpha, edgeAlpha, labels, labelAlpha, nodeR = 18) {
+    /* edges */
+    edges.forEach(([i,j]) => {
+      if (edgeAlpha <= 0) return;
+      const dx = nodes[j].x - nodes[i].x;
+      const dy = nodes[j].y - nodes[i].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const ux = dx/dist, uy = dy/dist;
+      ctx.save();
+      ctx.globalAlpha = edgeAlpha * 0.6;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 5;
+      ctx.setLineDash([4,4]);
+      ctx.beginPath();
+      ctx.moveTo(nodes[i].x + ux*nodeR, nodes[i].y + uy*nodeR);
+      ctx.lineTo(nodes[j].x - ux*nodeR, nodes[j].y - uy*nodeR);
+      ctx.stroke();
+      ctx.restore();
+    });
+
+    /* nodes */
+    nodes.forEach((n, idx) => {
+      if (nodeAlpha <= 0) return;
+      ctx.save();
+      ctx.globalAlpha = nodeAlpha;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 14;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, nodeR, 0, Math.PI * 2);
+      ctx.fillStyle = '#0a0e17';
+      ctx.fill();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.restore();
+
+      /* label */
+      if (labels && labelAlpha > 0) {
+        ctx.save();
+        ctx.globalAlpha = labelAlpha;
+        const lbl = labels[idx];
+        ctx.font = "500 10px 'Source Code Pro', monospace";
+        ctx.fillStyle = color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = idx < 1 ? 'bottom' : 'top';
+        const ly = idx < 1 ? n.y - nodeR - 4 : n.y + nodeR + 5;
+        ctx.fillText(lbl, n.x, ly);
+        ctx.restore();
+      }
+    });
+  }
+
+  function draw(p) {
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    const mergeT = easeInOut(Math.max(0, Math.min((p - 0.82) / 0.18, 1)));
+    const showAbstract = easeOut(Math.max(0, Math.min((p - 0.88) / 0.12, 1)));
+    const hideSpecific = easeInOut(Math.max(0, Math.min((p - 0.82) / 0.12, 1)));
+
+    /* ── Phase 1&2: split view ── */
+    if (mergeT < 1) {
+      const splitAlpha = 1 - mergeT;
+
+      /* Divider */
+      ctx.save();
+      ctx.globalAlpha = splitAlpha * 0.25;
+      ctx.strokeStyle = '#374151';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 6]);
+      ctx.beginPath();
+      ctx.moveTo(w/2, 20);
+      ctx.lineTo(w/2, h - 30);
+      ctx.stroke();
+      ctx.restore();
+
+      /* Side headers */
+      const hAlpha = Math.min(p / 0.12, 1) * splitAlpha;
+      ['INFRASTRUCTURE', 'APPLICATION'].forEach((lbl, i) => {
+        ctx.save();
+        ctx.globalAlpha = hAlpha * 0.5;
+        ctx.font = "600 11px 'Source Code Pro', monospace";
+        ctx.fillStyle = i === 0 ? C_INFRA : C_APP;
+        ctx.textAlign = 'center';
+        ctx.fillText(lbl, i === 0 ? w/4 : w*3/4, 16);
+        ctx.restore();
+      });
+
+      /* Left graph */
+      const lt = easeOut(Math.min(p / 0.35, 1));
+      const lNodes = graphNodes('left', w, h);
+      drawGraph(ctx, lNodes, EDGES, C_INFRA,
+        lt * splitAlpha, lt * splitAlpha,
+        INFRA_LABELS, lt * (1 - hideSpecific) * splitAlpha);
+
+      /* Right graph */
+      const rt = easeOut(Math.max(0, Math.min((p - 0.40) / 0.35, 1)));
+      const rNodes = graphNodes('right', w, h);
+      drawGraph(ctx, rNodes, EDGES, C_APP,
+        rt * splitAlpha, rt * splitAlpha,
+        APP_LABELS, rt * (1 - hideSpecific) * splitAlpha);
+    }
+
+    /* ── Phase 3: merged center graph ── */
+    if (mergeT > 0) {
+      const cNodes = graphNodes('center', w, h);
+      drawGraph(ctx, cNodes, EDGES, C_ABS,
+        mergeT, mergeT,
+        ABSTRACT_LABELS, showAbstract * mergeT);
+
+      /* "Same graph" label */
+      if (showAbstract > 0.3) {
+        ctx.save();
+        ctx.globalAlpha = Math.min((showAbstract - 0.3) / 0.5, 1);
+        ctx.font = "italic 13px 'Source Sans 3', sans-serif";
+        ctx.fillStyle = '#9ca3af';
+        ctx.textAlign = 'center';
+        ctx.fillText('The same directed graph — different vocabulary.', w/2, h - 16);
+        ctx.restore();
+      }
+    }
+  }
+
+  function animate(ts) {
+    if (!lastTime) lastTime = ts;
+    progress = Math.min(progress + (ts - lastTime) / DURATION, 1);
+    lastTime = ts;
+    draw(progress);
+    if (progress < 1) requestAnimationFrame(animate);
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      observer.disconnect();
+      requestAnimationFrame(animate);
+    }
+  }, { threshold: 0.3 });
+  observer.observe(canvas);
+})();
+</script>
+
+</body>
+</html>
