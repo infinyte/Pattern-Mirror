@@ -264,7 +264,7 @@
       background: linear-gradient(135deg, #1e40af, #2563eb);
       text-decoration: none;
     }
-  
+
   /* --- Navbar --- */
   .navbar {
     position: sticky;
@@ -350,7 +350,7 @@
     font-size: 0.75rem;
     color: #6b7280;
   }
-</style>
+  </style>
 </head>
 <body>
 <nav class="navbar">
@@ -430,6 +430,11 @@
   <p>That is the precise claim this series is making.</p>
 
   <p>A Reverse Proxy and a Mediator are not the same pattern. But there exists a structure-preserving correspondence between them — a functor, in the category-theoretic sense — that maps the components of one to the components of the other while preserving the essential relationships: the decoupling of producers from consumers, the centralization of routing logic, the indirection that makes both sides independently evolvable. Same form. Different substance. Different level of the stack. Not a coincidence.</p>
+
+  <div class="math-callout">
+    <h3>⊗ Addressing a Common Assumption</h3>
+    <p>A common assumption in software engineering is that design patterns are informal heuristics — engineering folklore codified in prose, not mathematics. That assumption is worth challenging plainly. The reason a Mediator decouples components is not convention — it is because hub-and-spoke topology has <strong>provable properties in graph theory</strong>. The reason a Circuit Breaker works is not intuition — it is because a <strong>three-state finite automaton</strong> has formally defined transition behavior. Terraform's execution engine doesn't <em>resemble</em> a directed acyclic graph — it <em>is</em> one, resolving dependency order and detecting cycles at runtime. IaC and the Saga pattern don't merely look alike — both are formal solutions to the same abstract problem: how do you coordinate a sequence of state changes across a system that cannot guarantee atomicity, and what happens when one step fails? The patterns exist because the underlying mathematics works. The software literature just rarely says so explicitly.</p>
+  </div>
 
   <p>This idea — that the same abstract structure appears at multiple levels of a system — is not new. It shows up throughout the history of formal science.</p>
 
@@ -547,6 +552,27 @@
   </div>
 
 </div><!-- /container -->
+
+<footer>
+<div class="footer-title">The Pattern Mirror</div>
+<div class="footer-tagline">Every Enterprise Pattern Has a Code-Level Twin</div>
+<div class="footer-links">
+<div class="footer-col">
+<h4>Episodes</h4>
+<a href="ep0.html">Prologue</a>
+<a href="ep1.html">Ep 1: The Middlemen</a>
+<a href="ep2.html">Ep 2: The Workflows</a>
+<a href="ep3.html">Ep 3: Resilience &amp; Performance</a>
+<a href="ep4.html">Ep 4: The Deep End</a>
+</div>
+<div class="footer-col">
+<h4>More</h4>
+<a href="carousel.html">Pattern Carousel</a>
+<a href="index.html">Series Home</a>
+</div>
+</div>
+<p class="footer-attribution">Built with Claude</p>
+</footer>
 
 <!-- ============================================================
      ANIMATION SCRIPTS
@@ -1114,26 +1140,6 @@ function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
   observer.observe(canvas);
 })();
 </script>
-<footer>
-<div class="footer-title">The Pattern Mirror</div>
-<div class="footer-tagline">Every Enterprise Pattern Has a Code-Level Twin</div>
-<div class="footer-links">
-<div class="footer-col">
-<h4>Episodes</h4>
-<a href="ep0.html">Prologue</a>
-<a href="ep1.html">Ep 1: The Middlemen</a>
-<a href="ep2.html">Ep 2: The Workflows</a>
-<a href="ep3.html">Ep 3: Resilience &amp; Performance</a>
-<a href="ep4.html">Ep 4: The Deep End</a>
-</div>
-<div class="footer-col">
-<h4>More</h4>
-<a href="carousel.html">Pattern Carousel</a>
-<a href="index.html">Series Home</a>
-</div>
-</div>
-<p class="footer-attribution">Built with Claude</p>
-</footer>
 
 </body>
 </html>
